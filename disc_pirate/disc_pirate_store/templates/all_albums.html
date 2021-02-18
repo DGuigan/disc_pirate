@@ -4,11 +4,13 @@
 
 {% block content %}
     {% for album in albums %}
-        <div>
-            Name: {{ album.name}}</br>
-            Artist: {{ album.artist}}</br>
-            Price: {{ album.price }}</br>
-            </br>
-        </div>
+        <a href="../single_album/{{ album.id }}">
+            <div>
+                Name: {{ album.name}}</br>
+                Artist: {{ album.artist}}</br>
+                Price: {{ album.price }}</br>
+                </br>
+            </div>
+        </a>
     {% endfor %}
 {% endblock %}
