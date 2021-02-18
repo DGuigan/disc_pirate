@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e12f4654-38ec-4b4f-885e-eee9a5713bfa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/all_albums.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disc_pirate/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +47,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/ca298_music_store/ca298_music_store/settings.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -71,7 +78,7 @@
       <workItem from="1613566587508" duration="1349000" />
       <workItem from="1613567947482" duration="666000" />
       <workItem from="1613568629552" duration="1765000" />
-      <workItem from="1613679757175" duration="1529000" />
+      <workItem from="1613679757175" duration="3819000" />
     </task>
     <servers />
   </component>
