@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e12f4654-38ec-4b4f-885e-eee9a5713bfa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/single_album.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/album_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1fb5a089-8ea8-4c25-943a-57c8c48b2772.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1fb5a089-8ea8-4c25-943a-57c8c48b2772.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/all_albums.html" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/all_albums.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/views.py" afterDir="false" />
     </list>
@@ -75,7 +76,7 @@
       <workItem from="1613566587508" duration="1349000" />
       <workItem from="1613567947482" duration="666000" />
       <workItem from="1613568629552" duration="1765000" />
-      <workItem from="1613679757175" duration="4972000" />
+      <workItem from="1613679757175" duration="5610000" />
     </task>
     <servers />
   </component>
