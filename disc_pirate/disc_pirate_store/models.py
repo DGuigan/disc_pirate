@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
 class Album(models.Model):
@@ -34,3 +35,7 @@ class ShoppingBasket(models.Model):
 class ShoppingBasketItems(models.Model):
     customerId = models.IntegerField()
     productId = models.IntegerField()
+
+
+class CaUser(AbstractUser):
+    is_admin = models.BooleanField(default=False)

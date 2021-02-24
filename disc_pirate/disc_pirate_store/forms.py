@@ -12,7 +12,6 @@ class AlbumForm(ModelForm):
 
 
 class CASignupForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
         model = CaUser
 
     @transaction.atomic
