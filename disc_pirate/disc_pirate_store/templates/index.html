@@ -1,12 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}My homepage{% endblock %}
+
 
 {% block content %}
 
     {% if user.is_authenticated %}
         {% if user.is_admin %}
             <h1>Ahoy Captain {{ user.username }}!</h1>
+            <h5>Secret admin bird</h5>
+            <img src="{% static '/images/bird.png' %}" height="200" width="150"/>
             <p><a href="/album_form">Submit Album</a></p>
         {% else %}
             <h1>Ahoy {{ user.username }}!</h1>
