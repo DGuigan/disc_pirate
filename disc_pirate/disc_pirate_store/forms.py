@@ -11,7 +11,6 @@ class AlbumForm(ModelForm):
         fields = ['albumName', 'artist', 'genre', 'releaseDate', 'description', 'price']
 
 
-
 # class CASignupForm(UserCreationForm):
 #         model = CaUser
 #
