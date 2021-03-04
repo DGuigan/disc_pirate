@@ -5,10 +5,15 @@
 {% block content %}
 
     {% if user.is_authenticated %}
-        <h1>Ahoy {{ user.username }}!</h1>
+        {% if user.is_admin %}
+            <h1>Ahoy Captain {{ user.username }}!</h1>
+        {% else %}
+            <h1>Ahoy {{ user.username }}!</h1>
+        {% endif %}
         <a href="/logout">Logout</a>
     {% else %}
         <p><a href="/causer_signup">Register</a></p>
+        <p><a href="/admin_signup">Register Admin</a></p>
         <a href="/login">Login</a>
     {% endif %}
 

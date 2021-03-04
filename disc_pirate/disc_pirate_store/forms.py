@@ -32,7 +32,7 @@ class AdminSignupForm(UserCreationForm):
     @transaction.atomic
     def save(self):
         user = super().save(commit=False)
-        user.is_admin = False
+        user.is_admin = True
         user.save()
         return user
 
