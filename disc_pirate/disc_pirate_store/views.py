@@ -33,3 +33,8 @@ def all_albums(request):
     albums = Album.objects.all()
     return render(request, 'all_albums.html', {'albums': albums})
 
+
+def single_album(request, album_id):
+    album = Album.objects.get(id=album_id)
+    return render(request, 'single_album.html', {'album': album})
+

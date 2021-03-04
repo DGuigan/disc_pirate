@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e12f4654-38ec-4b4f-885e-eee9a5713bfa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/disc_pirate/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/all_albums.html" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/all_albums.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/single_album.html" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/templates/single_album.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/disc_pirate/disc_pirate_store/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
