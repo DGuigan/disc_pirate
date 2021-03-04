@@ -28,3 +28,8 @@ def index(request):
 def register(request):
     return HttpResponse('Hello from the registration page')
 
+
+def all_albums(request):
+    albums = Album.objects.all()
+    return render(request, 'all_albums.html', {'albums': albums})
+
