@@ -7,6 +7,7 @@
     {% if user.is_authenticated %}
         {% if user.is_admin %}
             <h1>Ahoy Captain {{ user.username }}!</h1>
+            <p><a href="/album_form">Submit Album</a></p>
         {% else %}
             <h1>Ahoy {{ user.username }}!</h1>
         {% endif %}
@@ -20,7 +21,5 @@
     <p>Hello world</p>
 
     <p><a href="/all_albums">All Albums</a></p>
-
-    <p><a href="/album_form">Submit Album</a></p>
 
 {% endblock %}

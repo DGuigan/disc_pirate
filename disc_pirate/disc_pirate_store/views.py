@@ -6,6 +6,8 @@ from django.shortcuts import redirect
 from django.views.generic import CreateView
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
+from .decorators import admin_required
 
 
 def index(request):
@@ -26,6 +28,8 @@ def single_album(request, album_id):
     return render(request, 'single_album.html', {'album': album})
 
 
+@login_required
+@admin_required
 def album_form(request):
     if request.method == 'POST':
         form = AlbumForm(request.POST)
