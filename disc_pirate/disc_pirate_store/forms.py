@@ -8,7 +8,7 @@ from django.db import transaction
 class AlbumForm(ModelForm):
     class Meta:
         model = Album
-        fields = ['albumName', 'artist', 'genre','releaseDate', 'description', 'price']
+        fields = ['albumName', 'artist', 'genre', 'releaseDate', 'description', 'price']
 
 
 
