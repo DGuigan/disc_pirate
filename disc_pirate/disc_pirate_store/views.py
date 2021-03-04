@@ -4,7 +4,8 @@ from .models import *
 from .forms import *
 from django.shortcuts import redirect
 from django.views.generic import CreateView
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
+from django.contrib.auth.views import LoginView
 
 
 def index(request):
@@ -48,3 +49,26 @@ class CaUserSignupView(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('/')
+
+
+class AdminSignupView(CreateView):
+    model = CaUser
+    form_class = AdminSignupForm
+    template_name = 'admin_signup.html'
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('/')
+
+
+class Login(LoginView):
+    template_name = 'login.html'
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')

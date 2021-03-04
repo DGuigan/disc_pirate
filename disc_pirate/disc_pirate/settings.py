@@ -121,3 +121,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = "disc_pirate_store.CaUser"
+
+LOGIN_URL = "/login"
+LOGIN_REDIRECT_URL = "/"
