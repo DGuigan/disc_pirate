@@ -11,14 +11,15 @@ class AlbumForm(ModelForm):
         fields = ['albumName', 'artist', 'genre','releaseDate', 'description', 'price']
 
 
-class CASignupForm(UserCreationForm):
-        model = CaUser
 
-    @transaction.atomic
-    def save(self):
-        #  create object in memory, but don't add to db
-        user = super().save(commit=False)
-
-        user.is_admin = False
-        user.save()
-        return user
+# class CASignupForm(UserCreationForm):
+#         model = CaUser
+#
+#     @transaction.atomic
+#     def save(self):
+#         #  create object in memory, but don't add to db
+#         user = super().save(commit=False)
+#
+#         user.is_admin = False
+#         user.save()
+#         return user

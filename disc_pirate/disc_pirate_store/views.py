@@ -7,18 +7,18 @@ from django.views.generic import CreateView
 from django.contrib.auth import login
 
 
-class CaUserSignupView(CreateView):
-    model = CaUser
-    form_class = CASignupForm
-    template_name = 'causer_signup.html'
-
-    def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs)
-
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('/')
+# class CaUserSignupView(CreateView):
+#     model = CaUser
+#     form_class = CASignupForm
+#     template_name = 'causer_signup.html'
+#
+#     def get_context_data(self, **kwargs):
+#         return super().get_context_data(**kwargs)
+#
+#     def form_valid(self, form):
+#         user = form.save()
+#         login(self.request, user)
+#         return redirect('/')
 
 
 def index(request):
