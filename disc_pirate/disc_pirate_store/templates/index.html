@@ -1,10 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
 {% extends "base.html" %}
 
-{% block title %}My Homepage{% endblock %}
+<head>
+    {% block title %}My homepage{% endblock %}
+</head>
 
-{% block content %}
-    <p>Hello</p>
-    <p><a href="./registration">Register</a></p>
-    <p><a href="./all_albums">All Albums</a></p>
-    <p><a href="./album_form">Submit Album</a></p>
+<body>
+    {% block content %}
+        {% if user.is_authenticated %}
+            <a href="#">Logout</a>
+        {% else %}
+            <a href="#">Login</a>
+
+<p>
+    Hello world
+</p>
+
 {% endblock %}
+</body>
+

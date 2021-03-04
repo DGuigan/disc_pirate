@@ -1,32 +1,30 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+from django.http import HttpResponse
 from .models import *
 from .forms import *
+from django.shortcuts import redirect
+from django.views.generic import CreateView
+from django.contrib.auth import login
+
+
+class CaUserSignupView(CreateView):
+    model = CaUser
+    form_class = CASignupForm
+    template_name = 'causer_signup.html'
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('/')
+
 
 def index(request):
     return render(request, 'index.html')
 
 
 def register(request):
-    return HttpResponse(request, "Hello from reg")
+    return HttpResponse('Hello from the registration page')
 
-
-def all_albums(request):
-    all_a = Album.objects.all()
-    return render(request, 'all_albums.html', {'albums': all_a})
-
-
-def single_album(request, albumid):
-    album = Album.objects.get(id=albumid)
-    return render(request, 'single_album.html', {'album': album})
-
-
-def album_form(request):
-    if request.method == 'POST':
-        form = AlbumForm(request.POST)
-        if form.is_valid():
-            new_album = form.save()
-            return render(request, 'single_album.html', {'album': new_album})
-    elif request.method == 'GET':
-        form = AlbumForm()
-        return render(request, 'album_form.html', {'form': form})
