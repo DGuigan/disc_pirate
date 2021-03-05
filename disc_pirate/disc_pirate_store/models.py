@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class Album(models.Model):
     id = models.AutoField(primary_key=True)
     albumName = models.CharField(max_length=70)
+    albumArt = models.FileField(upload_to='album_art', blank=True)
     artist = models.CharField(max_length=50)
     genre = models.CharField(max_length=50)
     releaseDate = models.DateField()

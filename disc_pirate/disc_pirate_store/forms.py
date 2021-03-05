@@ -9,7 +9,7 @@ from django.contrib.auth.forms import AuthenticationForm
 class AlbumForm(ModelForm):
     class Meta:
         model = Album
-        fields = ['albumName', 'artist', 'genre', 'releaseDate', 'description', 'price']
+        fields = ['albumName', 'artist', 'albumArt', 'genre', 'releaseDate', 'description', 'price']
 
 
 class CASignupForm(UserCreationForm):

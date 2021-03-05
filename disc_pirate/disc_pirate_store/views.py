@@ -32,7 +32,7 @@ def single_album(request, album_id):
 @admin_required
 def album_form(request):
     if request.method == 'POST':
-        form = AlbumForm(request.POST)
+        form = AlbumForm(request.POST, request.FILES)
         if form.is_valid():
             new_album = form.save()
             return render(request, 'single_album.html', {'album': new_album})

@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}All Albums{% endblock %}
+{% block title %}{{ album.albumName }}{% endblock %}
 
 {% block content %}
         <div>
-            Name: {{ album.albumName}}<br>
-            Artist: {{ album.artist}}<br>
-            Release Date: {{ album.releaseDate}}<br>
-            Genre: {{ album.genre}}<br>
+            {% if album.albumArt %}
+                <img src="{{ album.albumArt.url }}" alt="Cover art for {{ album.albumName }}"height="150" width="150"/><br>
+            {% endif %}
+            Name: {{ album.albumName }}<br>
+            Artist: {{ album.artist }}<br>
+            Release Date: {{ album.releaseDate }}<br>
+            Genre: {{ album.genre }}<br>
             Price: {{ album.price }}<br>
             Description: {{ album.description }}<br>
             <br>
