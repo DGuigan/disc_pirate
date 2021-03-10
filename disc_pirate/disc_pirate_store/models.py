@@ -21,8 +21,12 @@ class Order(models.Model):
     date = models.DateField(auto_now_add=True)
 
 
+class CaUser(AbstractUser):
+    is_admin = models.BooleanField(default=False)
+
 class OrderItem(models.Model):
-    orderId = models.autoField(primary_key=True)
+    orderId = models.AutoField(primary_key=True)
+    productId = models.IntegerField()
     product = models.ForeignKey(Album, on_delete=models.CASCADE)
     quantity = models.IntegerField()
 
@@ -33,17 +37,12 @@ class OrderItem(models.Model):
 #  Shopping Basket
 class ShoppingBasket(models.Model):
     id = models.AutoField(primary_key=True)
-    customerId = models.IntegerField()
+    userId = models.OneToOneField(CaUser, on_delete=models.CASCADE)
 
 
 class ShoppingBasketItems(models.Model):
-    customerId = models.IntegerField()
-    productId = models.IntegerField()
-
-
-class CaUser(AbstractUser):
-    is_admin = models.BooleanField(default=False)
-
-class OrderForm(ModelForm):
-
+    id = models.AutoField(primary_key = True)
+    basket_id = models.ForeignKey(ShoppingBasket, on_delete=models.CASCADE)
+    product = models.ForeignKey(Album, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
 
