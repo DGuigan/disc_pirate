@@ -18,13 +18,16 @@ class Order(models.Model):
     id = models.AutoField(primary_key=True)
     customerId = models.IntegerField()
     address = models.CharField(max_length=200)
-    date = models.DateField()
-    courier = models.CharField(max_length=50)
+    date = models.DateField(auto_now_add=True)
 
 
 class OrderItem(models.Model):
-    orderId = models.IntegerField()
-    productId = models.IntegerField()
+    orderId = models.autoField(primary_key=True)
+    product = models.ForeignKey(Album, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+
+    def price(self):
+        return self.product.price * self.quantity
 
 
 #  Shopping Basket
@@ -40,3 +43,7 @@ class ShoppingBasketItems(models.Model):
 
 class CaUser(AbstractUser):
     is_admin = models.BooleanField(default=False)
+
+class OrderForm(ModelForm):
+
+
