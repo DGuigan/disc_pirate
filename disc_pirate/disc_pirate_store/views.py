@@ -8,6 +8,9 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from .decorators import admin_required
+from rest_framework import viewsets
+from .serializers import *
+
 
 
 def index(request):
@@ -76,3 +79,28 @@ class Login(LoginView):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+@login_required
+def add_to_basket(request, productid):
+    user = request.user
+    shopping_basket = ShoppingBasket.objects.filter(userId=user).first()
+    if not shopping_basket:
+        shopping_basket = ShoppingBasket(userId=user).save()
+
+    product = Album.objects.get(pk=productid)
+    sbi = ShoppingBasketItems(basket_id=shopping_basket, productid=product.id).save()
+    if sbi is None:
+        sbi = ShoppingBasketItems(basket_id=shopping_basket.id, )
+
+    dict = {"added" : True}
+    return render(request, 'single_album.html', {'product':product, 'added':True})
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = CaUser.objects.all()
+    serializer_class = UserSerializer
+
+
+class AlbumViewSet(viewsets.ModelViewSet):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
