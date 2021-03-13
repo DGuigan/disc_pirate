@@ -13,16 +13,16 @@ class Album(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
 
+class CaUser(AbstractUser):
+    is_admin = models.BooleanField(default=False)
+
+
 #  Orders
 class Order(models.Model):
     id = models.AutoField(primary_key=True)
-    customerId = models.IntegerField()
+    userId = models.IntegerField()
     address = models.CharField(max_length=200)
     date = models.DateField(auto_now_add=True)
-
-
-class CaUser(AbstractUser):
-    is_admin = models.BooleanField(default=False)
 
 
 class OrderItem(models.Model):
