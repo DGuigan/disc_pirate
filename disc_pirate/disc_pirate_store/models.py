@@ -43,6 +43,6 @@ class ShoppingBasket(models.Model):
 
 class ShoppingBasketItems(models.Model):
     id = models.AutoField(primary_key=True)
-    basket_id = models.ForeignKey(ShoppingBasket, on_delete=models.CASCADE)
+    basketId = models.ForeignKey(ShoppingBasket, on_delete=models.CASCADE)
     product = models.ForeignKey(Album, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
