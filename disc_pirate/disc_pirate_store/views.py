@@ -21,18 +21,14 @@ def register(request):
 
 
 def all_albums(request):
-    albums = Album.objects.all()
-    return render(request, 'all_albums.html', {'albums': albums})
-
-
-def all_albums_json(request):
     f = request.GET.get("format", "")
 
     if f == "json":
         albums_serialized = serializers.serialize("json", Album.objects.all())
         return HttpResponse(albums_serialized, content_type="application/json")
-
-    return redirect("/")
+    else:
+        albums = Album.objects.all()
+        return render(request, 'all_albums.html', {'albums': albums})
 
 
 def single_album(request, album_id):

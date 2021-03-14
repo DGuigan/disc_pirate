@@ -21,5 +21,4 @@ urlpatterns = [
     path('order_form/', views.order_form, name="order_form"),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),  # localhost api will be entrypoint to our REST api
-    path('all_albums_json/', views.all_albums_json, name="json albums"),
 ]
