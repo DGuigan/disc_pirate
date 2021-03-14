@@ -3,6 +3,9 @@
 {% block title %}{{ album.albumName }}{% endblock %}
 
 {% block content %}
+        {% if added %}
+            <h1>Item added</h1>
+        {% endif %}
         <div>
             {% if album.albumArt %}
                 <img src="{{ album.albumArt.url }}" alt="Cover art for {{ album.albumName }}"height="150" width="150"/><br>
@@ -14,5 +17,6 @@
             Price: {{ album.price }}<br>
             Description: {{ album.description }}<br>
             <br>
+            <p><a href="/add_to_basket/{{ album.id }}">Add to basket</a></p>
         </div>
 {% endblock %}

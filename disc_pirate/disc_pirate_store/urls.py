@@ -17,6 +17,7 @@ urlpatterns = [
     path('admin_signup/', views.AdminSignupView.as_view(), name="register admin"),
     path('login/', views.Login.as_view(template_name="login.html", authentication_form=UserLoginForm), name="login"),
     path('logout/', views.logout_view, name="logout"),
-    path('addbasket/<int:prodid>', views.add_to_basket, name="add_to_basket"),
+    path('add_to_basket/<int:album_id>', views.add_to_basket, name="add_to_basket"),
+    path('view_basket', views.view_basket, name="your_basket"),
     path('api/', include(router.urls))  # localhost api will be entrypoint to our REST api
 ]

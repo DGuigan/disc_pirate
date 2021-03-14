@@ -38,11 +38,20 @@ class OrderItem(models.Model):
 #  Shopping Basket
 class ShoppingBasket(models.Model):
     id = models.AutoField(primary_key=True)
-    userId = models.OneToOneField(CaUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(CaUser, on_delete=models.CASCADE)
+
+    def cost(self):
+        total = 0
+        for item in ShoppingBasketItems.objects.filter(basket=self):
+            total += item.cost()
+        return total
 
 
 class ShoppingBasketItems(models.Model):
     id = models.AutoField(primary_key=True)
-    basketId = models.ForeignKey(ShoppingBasket, on_delete=models.CASCADE)
-    productId = models.ForeignKey(Album, on_delete=models.CASCADE)
+    basket = models.ForeignKey(ShoppingBasket, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+
+    def cost(self):
+        return self.album.price * self.quantity

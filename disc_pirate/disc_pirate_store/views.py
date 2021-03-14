@@ -12,7 +12,6 @@ from rest_framework import viewsets
 from .serializers import *
 
 
-
 def index(request):
     return render(request, 'index.html')
 
@@ -80,20 +79,38 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
+
 @login_required
-def add_to_basket(request, productid):
+def add_to_basket(request, album_id):
     user = request.user
-    shopping_basket = ShoppingBasket.objects.filter(userId=user).first()
-    if not shopping_basket:
-        shopping_basket = ShoppingBasket(userId=user).save()
+    shopping_basket = ShoppingBasket.objects.filter(user=user).first()
+    if shopping_basket is None:
+        shopping_basket = ShoppingBasket(user=user).save()
 
-    product = Album.objects.get(pk=productid)
-    sbi = ShoppingBasketItems(basket_id=shopping_basket, productid=product.id).save()
+    # check if album exists
+
+    album = Album.objects.get(pk=album_id)
+    sbi = ShoppingBasketItems.objects.filter(basket=shopping_basket, album=album).first()
     if sbi is None:
-        sbi = ShoppingBasketItems(basket_id=shopping_basket.id, )
+        sbi = ShoppingBasketItems(basket=shopping_basket, album=album)
+        sbi.save()
+    else:
+        sbi.quantity += 1
+        sbi.save()
 
-    dict = {"added" : True}
-    return render(request, 'single_album.html', {'product':product, 'added':True})
+    # return render(request, 'single_album.html', {'album': album, 'added': True})
+    return redirect("/view_basket")
+
+
+@login_required
+def view_basket(request):
+    shopping_basket = ShoppingBasket.objects.filter(user=request.user).first()
+    if shopping_basket is None:
+        shopping_basket = ShoppingBasket(user=request.user).save()
+
+    basket_items = ShoppingBasketItems.objects.filter(basket=shopping_basket)
+
+    return render(request, 'view_basket.html', {'basket': shopping_basket, 'basket_items': basket_items})
 
 
 class UserViewSet(viewsets.ModelViewSet):

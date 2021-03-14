@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Basket{% endblock %}
+
+{% block content %}
+
+    {% for item in basket_items %}
+        <div>
+            Album: {{ item.album.albumName }}<br>
+            Quantity: {{ item.quantity }}<br>
+            Cost: {{ item.cost }}<br>
+            <br>
+        </div>
+    {% endfor %}
+
+    Total: {{ basket.cost }}
+
+{% endblock %}
