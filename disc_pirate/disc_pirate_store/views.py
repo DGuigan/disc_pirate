@@ -8,6 +8,7 @@ from django.views.generic import CreateView
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
 from rest_framework import viewsets
 
 
@@ -22,6 +23,16 @@ def register(request):
 def all_albums(request):
     albums = Album.objects.all()
     return render(request, 'all_albums.html', {'albums': albums})
+
+
+def all_albums_json(request):
+    f = request.GET.get("format", "")
+
+    if f == "json":
+        albums_serialized = serializers.serialize("json", Album.objects.all())
+        return HttpResponse(albums_serialized, content_type="application/json")
+
+    return redirect("/")
 
 
 def single_album(request, album_id):

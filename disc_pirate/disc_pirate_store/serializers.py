@@ -1,6 +1,5 @@
 from .models import CaUser, Album  # Import your model
-from django.urls import path, include
-from rest_framework import serializers, viewsets
+from rest_framework import serializers
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
