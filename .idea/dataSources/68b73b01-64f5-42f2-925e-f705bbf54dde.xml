@@ -1683,313 +1683,346 @@ permission_id</ColNames>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="571" parent="177" name="userId">
+    <column id="571" parent="177" name="address">
       <Position>2</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="572" parent="177" name="address">
-      <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="573" parent="177" name="date">
-      <Position>4</Position>
+    <column id="572" parent="177" name="date">
+      <Position>3</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="574" parent="177">
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="575" parent="178" name="productId">
-      <Position>1</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="576" parent="178" name="product_id">
-      <Position>2</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="577" parent="178" name="quantity">
-      <Position>3</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="578" parent="178" name="orderId">
+    <column id="573" parent="177" name="user_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <index id="579" parent="178" name="disc_pirate_store_orderitem_product_id_57c87671">
-      <ColNames>product_id</ColNames>
-      <ColumnCollations></ColumnCollations>
-    </index>
-    <key id="580" parent="178">
-      <ColNames>orderId</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="581" parent="178">
-      <ColNames>product_id</ColNames>
-      <RefTableName>disc_pirate_store_album</RefTableName>
-      <RefColNames>id</RefColNames>
-      <Deferrable>1</Deferrable>
-      <InitiallyDeferred>1</InitiallyDeferred>
-    </foreign-key>
-    <column id="582" parent="179" name="id">
-      <Position>1</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="583" parent="179" name="userId_id">
-      <Position>2</Position>
+    <column id="574" parent="177" name="cardNumber">
+      <Position>5</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="584" parent="179" name="sqlite_autoindex_disc_pirate_store_shoppingbasket_1">
+    <index id="575" parent="177" name="sqlite_autoindex_disc_pirate_store_order_1">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>userId_id</ColNames>
+      <ColNames>user_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="585" parent="179">
+    <key id="576" parent="177">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="586" parent="179">
-      <ColNames>userId_id</ColNames>
-      <UnderlyingIndexName>sqlite_autoindex_disc_pirate_store_shoppingbasket_1</UnderlyingIndexName>
+    <key id="577" parent="177">
+      <ColNames>user_id</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_disc_pirate_store_order_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="587" parent="179">
-      <ColNames>userId_id</ColNames>
+    <foreign-key id="578" parent="177">
+      <ColNames>user_id</ColNames>
       <RefTableName>disc_pirate_store_causer</RefTableName>
       <RefColNames>id</RefColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
     </foreign-key>
-    <column id="588" parent="180" name="id">
+    <column id="579" parent="178" name="quantity">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="589" parent="180" name="quantity">
+    <column id="580" parent="178" name="album_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="590" parent="180" name="basketId_id">
+    <column id="581" parent="178" name="id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="591" parent="180" name="albumId_id">
+    <column id="582" parent="178" name="order_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="592" parent="180" name="disc_pirate_store_shoppingbasketitems_basketId_id_964679ec">
-      <ColNames>basketId_id</ColNames>
+    <index id="583" parent="178" name="disc_pirate_store_orderitem_album_id_444f0e1d">
+      <ColNames>album_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="593" parent="180" name="disc_pirate_store_shoppingbasketitems_albumId_id_d415b3fa">
-      <ColNames>albumId_id</ColNames>
+    <index id="584" parent="178" name="disc_pirate_store_orderitem_order_id_2795bf8c">
+      <ColNames>order_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="594" parent="180">
+    <key id="585" parent="178">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="595" parent="180">
-      <ColNames>basketId_id</ColNames>
-      <RefTableName>disc_pirate_store_shoppingbasket</RefTableName>
-      <RefColNames>id</RefColNames>
-      <Deferrable>1</Deferrable>
-      <InitiallyDeferred>1</InitiallyDeferred>
-    </foreign-key>
-    <foreign-key id="596" parent="180">
-      <ColNames>albumId_id</ColNames>
+    <foreign-key id="586" parent="178">
+      <ColNames>album_id</ColNames>
       <RefTableName>disc_pirate_store_album</RefTableName>
       <RefColNames>id</RefColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
     </foreign-key>
-    <column id="597" parent="181" name="id">
+    <foreign-key id="587" parent="178">
+      <ColNames>order_id</ColNames>
+      <RefTableName>disc_pirate_store_order</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <column id="588" parent="179" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="598" parent="181" name="action_time">
+    <column id="589" parent="179" name="user_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="590" parent="179" name="sqlite_autoindex_disc_pirate_store_shoppingbasket_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="591" parent="179">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="592" parent="179">
+      <ColNames>user_id</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_disc_pirate_store_shoppingbasket_1</UnderlyingIndexName>
+    </key>
+    <foreign-key id="593" parent="179">
+      <ColNames>user_id</ColNames>
+      <RefTableName>disc_pirate_store_causer</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <column id="594" parent="180" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="595" parent="180" name="quantity">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="596" parent="180" name="album_id">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="597" parent="180" name="basket_id">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="598" parent="180" name="disc_pirate_store_shoppingbasketitems_album_id_5b22a772">
+      <ColNames>album_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="599" parent="180" name="disc_pirate_store_shoppingbasketitems_basket_id_49338620">
+      <ColNames>basket_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="600" parent="180">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="601" parent="180">
+      <ColNames>album_id</ColNames>
+      <RefTableName>disc_pirate_store_album</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <foreign-key id="602" parent="180">
+      <ColNames>basket_id</ColNames>
+      <RefTableName>disc_pirate_store_shoppingbasket</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <column id="603" parent="181" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="604" parent="181" name="action_time">
       <Position>2</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="599" parent="181" name="object_id">
+    <column id="605" parent="181" name="object_id">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="600" parent="181" name="object_repr">
+    <column id="606" parent="181" name="object_repr">
       <Position>4</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="601" parent="181" name="change_message">
+    <column id="607" parent="181" name="change_message">
       <Position>5</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="602" parent="181" name="content_type_id">
+    <column id="608" parent="181" name="content_type_id">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
     </column>
-    <column id="603" parent="181" name="user_id">
+    <column id="609" parent="181" name="user_id">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="604" parent="181" name="action_flag">
+    <column id="610" parent="181" name="action_flag">
       <Position>8</Position>
       <DataType>smallint unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="605" parent="181" name="django_admin_log_content_type_id_c4bce8eb">
+    <index id="611" parent="181" name="django_admin_log_content_type_id_c4bce8eb">
       <ColNames>content_type_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="606" parent="181" name="django_admin_log_user_id_c564eba6">
+    <index id="612" parent="181" name="django_admin_log_user_id_c564eba6">
       <ColNames>user_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="607" parent="181">
+    <key id="613" parent="181">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="608" parent="181">
+    <foreign-key id="614" parent="181">
       <ColNames>content_type_id</ColNames>
       <RefTableName>django_content_type</RefTableName>
       <RefColNames>id</RefColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
     </foreign-key>
-    <foreign-key id="609" parent="181">
+    <foreign-key id="615" parent="181">
       <ColNames>user_id</ColNames>
       <RefTableName>disc_pirate_store_causer</RefTableName>
       <RefColNames>id</RefColNames>
       <Deferrable>1</Deferrable>
       <InitiallyDeferred>1</InitiallyDeferred>
     </foreign-key>
-    <check id="610" parent="181">
+    <check id="616" parent="181">
       <Predicate>&quot;action_flag&quot; &gt;= 0</Predicate>
     </check>
-    <column id="611" parent="182" name="id">
+    <column id="617" parent="182" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="612" parent="182" name="app_label">
+    <column id="618" parent="182" name="app_label">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="613" parent="182" name="model">
+    <column id="619" parent="182" name="model">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="614" parent="182" name="django_content_type_app_label_model_76bd3d3b_uniq">
+    <index id="620" parent="182" name="django_content_type_app_label_model_76bd3d3b_uniq">
       <ColNames>app_label
 model</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="615" parent="182">
+    <key id="621" parent="182">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="616" parent="183" name="id">
+    <column id="622" parent="183" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="617" parent="183" name="app">
+    <column id="623" parent="183" name="app">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="618" parent="183" name="name">
+    <column id="624" parent="183" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="619" parent="183" name="applied">
+    <column id="625" parent="183" name="applied">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="620" parent="183">
+    <key id="626" parent="183">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="621" parent="184" name="session_key">
+    <column id="627" parent="184" name="session_key">
       <Position>1</Position>
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="622" parent="184" name="session_data">
+    <column id="628" parent="184" name="session_data">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="623" parent="184" name="expire_date">
+    <column id="629" parent="184" name="expire_date">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="624" parent="184" name="sqlite_autoindex_django_session_1">
+    <index id="630" parent="184" name="sqlite_autoindex_django_session_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>session_key</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="625" parent="184" name="django_session_expire_date_a5c62663">
+    <index id="631" parent="184" name="django_session_expire_date_a5c62663">
       <ColNames>expire_date</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="626" parent="184">
+    <key id="632" parent="184">
       <ColNames>session_key</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_django_session_1</UnderlyingIndexName>
     </key>
-    <column id="627" parent="185" name="type">
+    <column id="633" parent="185" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="628" parent="185" name="name">
+    <column id="634" parent="185" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="629" parent="185" name="tbl_name">
+    <column id="635" parent="185" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="630" parent="185" name="rootpage">
+    <column id="636" parent="185" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="631" parent="185" name="sql">
+    <column id="637" parent="185" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="632" parent="186" name="name">
+    <column id="638" parent="186" name="name">
       <Position>1</Position>
     </column>
-    <column id="633" parent="186" name="seq">
+    <column id="639" parent="186" name="seq">
       <Position>2</Position>
     </column>
   </database-model>

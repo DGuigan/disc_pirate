@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Album, CaUser
+from .models import Album, CaUser, Order
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django import forms
@@ -10,6 +10,12 @@ class AlbumForm(ModelForm):
     class Meta:
         model = Album
         fields = ['albumName', 'artist', 'albumArt', 'genre', 'releaseDate', 'description', 'price']
+
+
+class OrderForm(ModelForm):
+    class Meta:
+        model = Order
+        fields = ['address', 'cardNumber']
 
 
 class CASignupForm(UserCreationForm):

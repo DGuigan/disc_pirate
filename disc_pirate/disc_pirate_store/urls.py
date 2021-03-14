@@ -19,5 +19,6 @@ urlpatterns = [
     path('logout/', views.logout_view, name="logout"),
     path('add_to_basket/<int:album_id>', views.add_to_basket, name="add_to_basket"),
     path('view_basket', views.view_basket, name="your_basket"),
+    path('order_form/', views.order_form, name="order_form"),
     path('api/', include(router.urls))  # localhost api will be entrypoint to our REST api
 ]

@@ -113,6 +113,39 @@ def view_basket(request):
     return render(request, 'view_basket.html', {'basket': shopping_basket, 'basket_items': basket_items})
 
 
+@login_required
+def order_form(request):
+    user = request.user
+    shopping_basket = ShoppingBasket.objects.filter(user=user).first()
+
+    if shopping_basket is None:
+        shopping_basket = ShoppingBasket(user=user).save()
+
+    basket_items = ShoppingBasketItems.objects.filter(basket=shopping_basket)
+
+    if len(basket_items) == 0:
+        return redirect('/')
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST, request.FILES)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.user = user
+            order.save()
+
+            for basket_item in basket_items:
+                order_item = OrderItem.objects.create(order=order,
+                                                      album=basket_item.album,
+                                                      quantity=basket_item.quantity)
+                order_item.save()
+
+            shopping_basket.delete()
+            return redirect('/')
+    elif request.method == 'GET':
+        form = OrderForm()
+        return render(request, 'order_form.html', {'form': form})
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CaUser.objects.all()
     serializer_class = UserSerializer
