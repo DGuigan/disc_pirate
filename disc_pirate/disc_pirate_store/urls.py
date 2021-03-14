@@ -1,7 +1,6 @@
-from django.urls import path
 from . import views
-from .forms import UserLoginForm
 from .views import *
+from django.urls import path
 from rest_framework import routers
 
 router = routers.DefaultRouter()

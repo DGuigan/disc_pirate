@@ -1,15 +1,14 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 from .models import *
 from .forms import *
-from django.shortcuts import redirect
+from .decorators import admin_required
+from .serializers import *
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.views.generic import CreateView
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
-from .decorators import admin_required
 from rest_framework import viewsets
-from .serializers import *
 
 
 def index(request):
@@ -87,7 +86,7 @@ def add_to_basket(request, album_id):
     if shopping_basket is None:
         shopping_basket = ShoppingBasket(user=user).save()
 
-    # check if album exists
+    # TODO: check if album exists
 
     album = Album.objects.get(pk=album_id)
     sbi = ShoppingBasketItems.objects.filter(basket=shopping_basket, album=album).first()

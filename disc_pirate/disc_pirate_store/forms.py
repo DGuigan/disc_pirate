@@ -1,8 +1,8 @@
-from django.forms import ModelForm
 from .models import Album, CaUser, Order
-from django.contrib.auth.forms import UserCreationForm
-from django.db import transaction
 from django import forms
+from django.forms import ModelForm
+from django.db import transaction
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 
 
@@ -48,4 +48,6 @@ class UserLoginForm(AuthenticationForm):
         super(UserLoginForm, self).__init__(*args, **kwargs)
 
     username = forms.TextInput(attrs={'class': 'form-control', 'placeholder': '', 'id': 'hello'})
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '', 'id': 'hi'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control',
+                                                                 'placeholder': '',
+                                                                 'id': 'hi'}))
