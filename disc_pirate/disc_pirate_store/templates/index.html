@@ -6,26 +6,14 @@
 
 {% block content %}
 
-    {% if user.is_authenticated %}
-        {% if user.is_admin %}
-            <h1>Ahoy Captain {{ user.username }}!</h1>
-            <h5>Secret admin bird</h5>
-            <img src="{% static '/images/bird.png' %}" height="200" width="150"/>
-            <p><a href="/album_form">Submit Album</a></p>
-        {% else %}
-            <h1>Ahoy {{ user.username }}!</h1>
-        {% endif %}
-        <a href="/view_basket">View Basket</a><br>
-        <a href="/logout">Logout</a>
-    {% else %}
-        <p><a href="/causer_signup">Register</a></p>
-        <p><a href="/admin_signup">Register Admin</a></p>
-        <a href="/login">Login</a>
-    {% endif %}
-
-    <p>Hello world</p>
-
-    <p><a href="/all_albums">All Albums</a></p>
-    <p><a href="/all_albums?format=json">All albums (json)</a></p>
+    <p>Name: {{ user.username }}</p><br>
+    <p><a href="/album_form">Submit Album</a></p><br>
+    <a href="/view_basket">View Basket</a><br>
+    <a href="/logout">Logout</a><br>
+    <p><a href="/causer_signup">Register</a></p><br>
+    <p><a href="/admin_signup">Register Admin</a></p><br>
+    <a href="/login">Login</a><br>
+    <p><a href="/all_albums">All Albums</a></p><br>
+    <p><a href="/all_albums?format=json">All albums (json)</a></p><br>
 
 {% endblock %}
