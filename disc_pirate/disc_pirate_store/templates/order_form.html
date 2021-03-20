@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Order Form{% endblock %}
+
+{% block content %}
+    <form action="/order_form/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

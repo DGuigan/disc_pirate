@@ -15,6 +15,7 @@
         {% else %}
             <h1>Ahoy {{ user.username }}!</h1>
         {% endif %}
+        <a href="/view_basket">View Basket</a><br>
         <a href="/logout">Logout</a>
     {% else %}
         <p><a href="/causer_signup">Register</a></p>
@@ -25,5 +26,6 @@
     <p>Hello world</p>
 
     <p><a href="/all_albums">All Albums</a></p>
+    <p><a href="/all_albums?format=json">All albums (json)</a></p>
 
 {% endblock %}

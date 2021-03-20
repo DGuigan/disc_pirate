@@ -13,36 +13,52 @@ class Album(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
 
-#  Orders
-class Order(models.Model):
-    id = models.AutoField(primary_key=True)
-    customerId = models.IntegerField()
-    address = models.CharField(max_length=200)
-    date = models.DateField(auto_now_add=True)
-
-
 class CaUser(AbstractUser):
     is_admin = models.BooleanField(default=False)
 
+
+#  Orders
+class Order(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(CaUser, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    address = models.CharField(max_length=200)
+    cardNumber = models.IntegerField()
+
+    def cost(self):
+        total = 0
+        for item in OrderItem.objects.filter(order=self):
+            total += item.cost()
+        return total
+
+
 class OrderItem(models.Model):
-    orderId = models.AutoField(primary_key=True)
-    productId = models.IntegerField()
-    product = models.ForeignKey(Album, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE)
     quantity = models.IntegerField()
 
-    def price(self):
-        return self.product.price * self.quantity
+    def cost(self):
+        return self.album.price * self.quantity
 
 
 #  Shopping Basket
 class ShoppingBasket(models.Model):
     id = models.AutoField(primary_key=True)
-    userId = models.OneToOneField(CaUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(CaUser, on_delete=models.CASCADE)
+
+    def cost(self):
+        total = 0
+        for item in ShoppingBasketItems.objects.filter(basket=self):
+            total += item.cost()
+        return total
 
 
 class ShoppingBasketItems(models.Model):
-    id = models.AutoField(primary_key = True)
-    basket_id = models.ForeignKey(ShoppingBasket, on_delete=models.CASCADE)
-    product = models.ForeignKey(Album, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    basket = models.ForeignKey(ShoppingBasket, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
 
+    def cost(self):
+        return self.album.price * self.quantity
