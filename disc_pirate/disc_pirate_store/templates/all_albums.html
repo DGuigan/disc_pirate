@@ -5,7 +5,7 @@
 {% block content %}
     {% for album in albums %}
         <a href="../single_album/{{ album.id }}">
-            <div>
+            <div class="container-fluid, border" align="center">
                 Name: {{ album.albumName}}<br>
                 Artist: {{ album.artist}}<br>
                 Price: {{ album.price }}<br>
