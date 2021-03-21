@@ -8,12 +8,12 @@
         <div>
             Album: {{ item.album.albumName }}<br>
             Quantity: {{ item.quantity }}<br>
-            Cost: {{ item.cost }}<br>
+            Cost: €{{ item.cost }}<br>
             <br>
         </div>
     {% endfor %}
 
-    Total: {{ basket.cost }}
+    Total: €{{ basket.cost }}
     <p><a href="/order_form">Checkout</a></p>
 
 {% endblock %}
