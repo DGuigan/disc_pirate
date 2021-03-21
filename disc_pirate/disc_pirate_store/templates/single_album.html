@@ -6,21 +6,36 @@
 {% block content %}
         <div class="container-fluid">
             <div class="row">
-                <div class="col">
+                <div class="col-md-4">
                     {% if album.albumArt %}
-                        <img src="{{ album.albumArt.url }}" alt="Cover art for {{ album.albumName }}" height="400" width="400"/><br>
+                        <img src="{{ album.albumArt.url }}" class="img-fluid" alt="Cover art for {{ album.albumName }}"/><br>
                     {% else %}
-                        <img src="{% static '/images/defaultArt.png' %}" alt="Default cover art" height="400" width="400"/><br>
+                        <img src="{% static '/images/defaultArt.png' %}" class="img-fluid" alt="Default cover art" /><br>
                     {% endif %}
                     <h6><a href="/add_to_basket/{{ album.id }}">Add to basket</a></h6>
                 </div>
-                <div class="col">
-                    Name: {{ album.albumName }}<br>
-                    Artist: {{ album.artist }}<br>
-                    Release Date: {{ album.releaseDate }}<br>
-                    Genre: {{ album.genre }}<br>
-                    Price: €{{ album.price }}<br>
-                    Description: {{ album.description }}<br>
+                <div class="col-md-8">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <h4>{{ album.albumName }}</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <p>Artist:</p>
+                                <p>Release Date:</p>
+                                <p>Genre:</p>
+                                <p>Price:</p>
+                                <p>Description:</p>
+                            </div>
+                            <div class="col-10">
+                                <p>{{ album.artist }}</p>
+                                <p>{{ album.releaseDate }}</p>
+                                <p>{{ album.genre }}</p>
+                                <p>€{{ album.price }}</p>
+                                <p>{{ album.description }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
