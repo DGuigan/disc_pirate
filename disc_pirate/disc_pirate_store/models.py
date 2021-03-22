@@ -48,7 +48,7 @@ class ShoppingBasket(models.Model):
     user = models.OneToOneField(CaUser, on_delete=models.CASCADE)
 
     def cost(self):
-        total = 0.0
+        total = 0
         for item in ShoppingBasketItems.objects.filter(basket=self):
             total += item.cost()
         return total

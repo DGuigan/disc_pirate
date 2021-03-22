@@ -115,6 +115,8 @@ def view_basket(request):
         shopping_basket = ShoppingBasket(user=request.user).save()
 
     basket_items = ShoppingBasketItems.objects.filter(basket=shopping_basket)
+    if len(basket_items) == 0:
+        basket_items = None
 
     return render(request, 'view_basket.html', {'basket': shopping_basket, 'basket_items': basket_items})
 
