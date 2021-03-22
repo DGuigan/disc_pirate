@@ -9,7 +9,17 @@ from django.contrib.auth.forms import AuthenticationForm
 class AlbumForm(ModelForm):
     class Meta:
         model = Album
-        fields = ['albumName', 'artist', 'albumArt', 'genre', 'releaseDate', 'description', 'price']
+        fields = '__all__'
+
+        widgets = {
+            'albumName': forms.TextInput(attrs={'class': 'form-control'}),
+            'albumArt': forms.FileInput(attrs={'class': 'form-control'}),
+            'artist': forms.TextInput(attrs={'class': 'form-control'}),
+            'genre': forms.TextInput(attrs={'class': 'form-control'}),
+            'releaseDate': forms.DateInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
 
 
 class OrderForm(ModelForm):
