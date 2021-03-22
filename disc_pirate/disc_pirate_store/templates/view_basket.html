@@ -4,24 +4,23 @@
 
 {% block content %}
 
-    {% if basket_items %}
-
-        {% for item in basket_items %}
-            <div>
-                Album: {{ item.album.albumName }}<br>
-                Quantity: {{ item.quantity }}<br>
-                Cost: €{{ item.cost }}<br>
-                <br>
+    <div class="container-fluid">
+        {% if basket_items %}
+            <div class="row">
+                {% for item in basket_items %}
+                    <div class="col-lg">
+                        Album: {{ item.album.albumName }}<br>
+                        Quantity: {{ item.quantity }}<br>
+                        Cost: €{{ item.cost }}<br>
+                        <br>
+                    </div>
+                {% endfor %}
             </div>
-        {% endfor %}
-
-        Total: €{{ basket.cost }}
-        <p><a href="/order_form">Checkout</a></p>
-
-    {% else %}
-
-        <h3>Your basket is empty, please go buy stuff</h3>
-
-    {% endif %}
+                Total: €{{ basket.cost }}
+                <p><a href="/order_form">Checkout</a></p>
+        {% else %}
+            <h3>Your basket is empty, please go buy stuff</h3>
+        {% endif %}
+    </div>
 
 {% endblock %}
