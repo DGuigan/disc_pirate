@@ -32,6 +32,7 @@ class CASignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = CaUser
 
+
     @transaction.atomic
     def save(self):
         #  create object in memory, but don't add to db yet
@@ -57,7 +58,7 @@ class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
 
-    username = forms.TextInput(attrs={'class': 'form-control', 'placeholder': '', 'id': 'hello'})
+    username = forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''})
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control',
                                                                  'placeholder': '',
-                                                                 'id': 'hi'}))
+                                                                 }))
