@@ -25,7 +25,12 @@ class AlbumForm(ModelForm):
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        fields = ['address', 'cardNumber']
+        fields = ['address', 'contactNumber']
+
+        widgets = {
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'contactNumber': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
 
 class CASignupForm(UserCreationForm):

@@ -20,10 +20,10 @@ class CaUser(AbstractUser):
 #  Orders
 class Order(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.OneToOneField(CaUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CaUser, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
     address = models.CharField(max_length=200)
-    cardNumber = models.IntegerField()
+    contactNumber = models.CharField(max_length=15)
 
     def cost(self):
         total = 0.0
