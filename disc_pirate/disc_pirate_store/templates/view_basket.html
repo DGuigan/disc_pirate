@@ -8,13 +8,20 @@
         <div class="row">
             {% if basket_items %}
                 <div class="col-lg-8">
-                    {% for item in basket_items %}
-                        <div class="row border">
-                            Album: {{ item.album.albumName }}<br>
-                            Quantity: {{ item.quantity }}<br>
-                            Cost: €{{ item.cost }}<br>
-                        </div>
-                    {% endfor %}
+                    <table class="table">
+                        <tr>
+                            <th>Album</th>
+                            <th>Quantity</th>
+                            <th>Single Price</th>
+                        </tr>
+                        {% for item in basket_items %}
+                            <tr>
+                                <td>{{ item.album.albumName }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>€{{ item.album.price }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
                 </div>
                 <div class="col-lg-4">
                     <p>Total: €{{ basket.cost }}</p>
