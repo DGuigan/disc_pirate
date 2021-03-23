@@ -1,4 +1,4 @@
-from .models import Album, CaUser, Order
+from .models import Album, CaUser, Order, ShoppingBasket
 from django import forms
 from django.forms import ModelForm
 from django.db import transaction
@@ -37,13 +37,13 @@ class CASignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = CaUser
 
-
     @transaction.atomic
     def save(self):
         #  create object in memory, but don't add to db yet
         user = super().save(commit=False)
         user.is_admin = False
         user.save()
+        ShoppingBasket(user=user).save()
         return user
 
 

@@ -89,9 +89,7 @@ def logout_view(request):
 @login_required
 def add_to_basket(request, album_id):
     user = request.user
-    shopping_basket = ShoppingBasket.objects.filter(user=user).first()
-    if shopping_basket is None:
-        shopping_basket = ShoppingBasket(user=user).save()
+    shopping_basket = ShoppingBasket.objects.get(user=user)
 
     # TODO: check if album exists
 
@@ -104,15 +102,12 @@ def add_to_basket(request, album_id):
         sbi.quantity += 1
         sbi.save()
 
-    # return render(request, 'single_album.html', {'album': album, 'added': True})
     return redirect("/view_basket")
 
 
 @login_required
 def view_basket(request):
-    shopping_basket = ShoppingBasket.objects.filter(user=request.user).first()
-    if shopping_basket is None:
-        shopping_basket = ShoppingBasket(user=request.user).save()
+    shopping_basket = ShoppingBasket.objects.get(user=request.user)
 
     basket_items = ShoppingBasketItems.objects.filter(basket=shopping_basket)
     if len(basket_items) == 0:
@@ -146,8 +141,8 @@ def order_form(request):
                                                       album=basket_item.album,
                                                       quantity=basket_item.quantity)
                 order_item.save()
+                basket_item.delete()
 
-            shopping_basket.delete()
             return redirect('/')
     elif request.method == 'GET':
         form = OrderForm()
