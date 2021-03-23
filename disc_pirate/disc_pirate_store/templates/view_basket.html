@@ -13,19 +13,21 @@
                             <th>Album</th>
                             <th>Quantity</th>
                             <th>Single Price</th>
+                            <th></th>
                         </tr>
                         {% for item in basket_items %}
                             <tr>
                                 <td>{{ item.album.albumName }}</td>
                                 <td>{{ item.quantity }}</td>
                                 <td>€{{ item.album.price }}</td>
+                                <td><a href="/remove_from_basket/{{ item.album.id }}">Remove</a></td>
                             </tr>
                         {% endfor %}
                     </table>
                 </div>
                 <div class="col-lg-4">
                     <p>Total: €{{ basket.cost }}</p>
-                    <p><a href="/order_form">Checkout</a></p>
+                    <a href="/order_form"><button class="btn">Checkout</button></a>
                 </div>
             {% else %}
                 <h3>Your basket is empty, please go buy stuff</h3>

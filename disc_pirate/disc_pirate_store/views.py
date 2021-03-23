@@ -106,6 +106,24 @@ def add_to_basket(request, album_id):
 
 
 @login_required
+def remove_from_basket(request, album_id):
+    user = request.user
+    shopping_basket = ShoppingBasket.objects.get(user=user)
+    album = Album.objects.get(pk=album_id)
+    sbi = ShoppingBasketItems.objects.filter(basket=shopping_basket, album=album).first()
+
+    if sbi is None:
+        return redirect("/")
+    elif sbi.quantity > 1:
+        sbi.quantity -= 1
+        sbi.save()
+    elif sbi.quantity == 1:
+        sbi.delete()
+
+    return redirect("/view_basket")
+
+
+@login_required
 def view_basket(request):
     shopping_basket = ShoppingBasket.objects.get(user=request.user)
 

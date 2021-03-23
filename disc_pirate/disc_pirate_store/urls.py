@@ -17,6 +17,7 @@ urlpatterns = [
     path('login/', views.Login.as_view(template_name="login.html", authentication_form=UserLoginForm), name="login"),
     path('logout/', views.logout_view, name="logout"),
     path('add_to_basket/<int:album_id>', views.add_to_basket, name="add_to_basket"),
+    path('remove_from_basket/<int:album_id>', views.remove_from_basket, name="remove_from_basket"),
     path('view_basket', views.view_basket, name="your_basket"),
     path('order_form/', views.order_form, name="order_form"),
     path('api-auth/', include('rest_framework.urls')),
