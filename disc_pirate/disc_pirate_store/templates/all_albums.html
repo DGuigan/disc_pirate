@@ -1,16 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}All Albums{% endblock %}
 
 {% block content %}
+    <div class="container-fluid" style="margin-left: 5px;">
     {% for album in albums %}
-        <a href="../single_album/{{ album.id }}">
-            <div class="container-fluid, border" align="center">
-                Name: {{ album.albumName}}<br>
-                Artist: {{ album.artist}}<br>
-                Price: €{{ album.price }}<br>
-                <br>
+            <div class="card" style="width:50rem; align-content: center; margin-left: 50rem">
+                {% if album.albumArt %}
+                        <img src="{{ album.albumArt.url }}" class="card-img-top" alt="Cover art for {{ album.albumName }}"/><br>
+                    {% else %}
+                        <img src="{% static '/images/defaultArt.png' %}" class="img-fluid" alt="Default cover art" /><br>
+                    {% endif %}
+                    <div class="card-body">
+                        <h4 class="card-title">{{ album.albumName }}</h4>
+                        <p class="card-text"> {{ album.description }} </p>
+                        <a href="../single_album/{{ album.id }}">Go to Album</a>
+                    </div>
             </div>
         </a>
     {% endfor %}
+    </div>
 {% endblock %}
