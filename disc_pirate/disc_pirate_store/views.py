@@ -183,7 +183,8 @@ def admin_page(request):
 
 @login_required
 def user_page(request):
-    return render(request, 'user_page.html')
+    orders = Order.objects.filter(user=request.user)
+    return render(request, 'user_page.html', {'orders': orders})
 
 
 class UserViewSet(viewsets.ModelViewSet):
