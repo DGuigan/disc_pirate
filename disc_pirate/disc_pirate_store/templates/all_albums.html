@@ -4,18 +4,24 @@
 {% block title %}All Albums{% endblock %}
 
 {% block content %}
-    {% for album in albums %}
-            <div class="card" style="width:50rem; align-content: center; margin-left: 50rem; margin-bottom: 2rem;" >
+    <div class="container-fluid">
+    <div class="row">
+        {% for album in albums %}
+            <div class="col-4">
+            <div class="card" style="width:90%; align-content: center; margin-bottom: 1rem; margin-top: 1rem;" >
                 {% if album.albumArt %}
-                        <img src="{{ album.albumArt.url }}" class="card-img-top" alt="Cover art for {{ album.albumName }}"/><br>
-                    {% else %}
-                        <img src="{% static '/images/defaultArt.png' %}" class="img-fluid" alt="Default cover art" /><br>
-                    {% endif %}
-                    <div class="card-body">
-                        <h4 class="card-title">{{ album.albumName }}</h4>
-                        <p class="card-text"> {{ album.description }} </p>
-                        <a href="../single_album/{{ album.id }}">Go to Album</a>
-                    </div>
+                    <img src="{{ album.albumArt.url }}" class="card-img-top" alt="Cover art for {{ album.albumName }}"/><br>
+                {% else %}
+                    <img src="{% static '/images/defaultArt.png' %}" class="img-fluid" alt="Default cover art" /><br>
+                {% endif %}
+                <div class="card-body">
+                    <h4 class="card-title">{{ album.albumName }}</h4>
+                    <p class="card-text"> {{ album.description }} </p>
+                    <a href="../single_album/{{ album.id }}">Go to Album</a>
+                </div>
             </div>
-    {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+    </div>
 {% endblock %}
