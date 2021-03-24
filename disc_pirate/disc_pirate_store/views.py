@@ -167,6 +167,20 @@ def order_form(request):
         return render(request, 'order_form.html', {'form': form})
 
 
+@login_required
+@admin_required
+def admin_page(request):
+    if request.method == 'POST':
+        form = AlbumForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_album = form.save()
+            return render(request, 'single_album.html', {'album': new_album})
+    elif request.method == 'GET':
+        form = AlbumForm()
+        orders = Order.objects.all()
+        return render(request, 'admin_page.html', {'orders': orders, 'form': form})
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CaUser.objects.all()
     serializer_class = UserSerializer

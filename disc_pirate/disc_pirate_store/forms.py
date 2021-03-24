@@ -56,6 +56,7 @@ class AdminSignupForm(UserCreationForm):
         user = super().save(commit=False)
         user.is_admin = True
         user.save()
+        ShoppingBasket(user=user).save()
         return user
 
 

@@ -26,7 +26,7 @@ class Order(models.Model):
     contactNumber = models.CharField(max_length=15)
 
     def cost(self):
-        total = 0.0
+        total = 0
         for item in OrderItem.objects.filter(order=self):
             total += item.cost()
         return total
