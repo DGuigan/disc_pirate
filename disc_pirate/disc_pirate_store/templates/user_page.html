@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+
+    <h3>Hey, {{ user.username }}</h3>
+    <p><a class="nav-link" href="/logout">Log Out</a></p>
+
+{% endblock %}

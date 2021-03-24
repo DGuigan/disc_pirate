@@ -181,6 +181,11 @@ def admin_page(request):
         return render(request, 'admin_page.html', {'orders': orders, 'form': form})
 
 
+@login_required
+def user_page(request):
+    return render(request, 'user_page.html')
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CaUser.objects.all()
     serializer_class = UserSerializer
