@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col">
+                <h3>Hey, {{ user.username }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col border">
+                <h2>Your Orders</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Order #</th>
+                        <th>Cost</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                    </tr>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.cost }}</td>
+                            <td>{{ order.address }}</td>
+                            <td>{{ order.contactNumber }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col border">
+                <h2>Your Information</h2>
+                <table class="table">
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Date Joined</strong></td>
+                        <td>{{ user.date_joined }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Account Type</strong></td>
+                        {% if user.is_admin %}
+                            <td>Admin</td>
+                        {% else %}
+                            <td>Customer</td>
+                        {% endif %}
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p><a class="nav-link" href="/logout">Log Out</a></p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
