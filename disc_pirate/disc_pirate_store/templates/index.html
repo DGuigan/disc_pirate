@@ -6,9 +6,29 @@
 
 {% block content %}
 
-    {% if user.is_authenticated %}
-        <h3>Hello {{ user.username }}</h3>
-    {%  endif %}
-    <p><a href="/album_form">Submit Album</a></p>
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="jumbotron">
+                    <h1 class="display-4">
+                        {% if user.is_authenticated %}
+                            Hello, {{ user.username }}.<br>
+                        {% endif %}
+                        Welcome to Disc Pirate!
+                    </h1>
+                    <p class="lead">The one-stop-shop for a specific portion of your music needs.</p>
+                    <p class="lead">The site looks awfully bootstrapy at the moment but come back soon to be disappointed.</p>
+                    <hr class="my-4">
+                    <p>Check out this meaningless album that was randomly chosen by a mindless robot:</p>
+                    <a class="btn btn-primary btn-lg" href="/single_album/{{ random_album.id }}" role="button">{{ random_album.albumName }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

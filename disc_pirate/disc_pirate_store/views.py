@@ -10,10 +10,12 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from rest_framework import viewsets
+from random import choice
 
 
 def index(request):
-    return render(request, 'index.html')
+    albums = Album.objects.all()
+    return render(request, 'index.html', {'random_album': choice(albums)})
 
 
 def register(request):
