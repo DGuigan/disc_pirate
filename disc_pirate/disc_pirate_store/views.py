@@ -35,10 +35,13 @@ def all_albums(request):
 
 
 def single_album(request, album_id):
+
+    # if album does not exist redirect to all_albums view
     try:
         album = Album.objects.get(pk=album_id)
     except ObjectDoesNotExist:
         return redirect("/all_albums")
+
     return render(request, 'single_album.html', {'album': album})
 
 
@@ -97,6 +100,7 @@ def add_to_basket(request, album_id):
     user = request.user
     shopping_basket = ShoppingBasket.objects.get(user=user)
 
+    # if album does not exist redirect to view_basket page without modifying basket
     try:
         album = Album.objects.get(pk=album_id)
     except ObjectDoesNotExist:
@@ -118,6 +122,7 @@ def remove_from_basket(request, album_id):
     user = request.user
     shopping_basket = ShoppingBasket.objects.get(user=user)
 
+    # if album does not exist redirect to view_basket page without modifying basket
     try:
         album = Album.objects.get(pk=album_id)
     except ObjectDoesNotExist:
@@ -150,15 +155,13 @@ def view_basket(request):
 @login_required
 def order_form(request):
     user = request.user
-    shopping_basket = ShoppingBasket.objects.filter(user=user).first()
-
-    if shopping_basket is None:
-        shopping_basket = ShoppingBasket(user=user).save()
+    shopping_basket = ShoppingBasket.objects.get(user=user)
 
     basket_items = ShoppingBasketItems.objects.filter(basket=shopping_basket)
 
+    # if basket is empty redirect to view_basket page
     if len(basket_items) == 0:
-        return redirect('/')
+        return redirect('/view_basket')
 
     if request.method == 'POST':
         form = OrderForm(request.POST, request.FILES)
