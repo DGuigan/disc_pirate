@@ -9,6 +9,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import viewsets
 from random import choice
 
@@ -34,7 +35,10 @@ def all_albums(request):
 
 
 def single_album(request, album_id):
-    album = Album.objects.get(id=album_id)
+    try:
+        album = Album.objects.get(pk=album_id)
+    except ObjectDoesNotExist:
+        return redirect("/all_albums")
     return render(request, 'single_album.html', {'album': album})
 
 
@@ -93,9 +97,11 @@ def add_to_basket(request, album_id):
     user = request.user
     shopping_basket = ShoppingBasket.objects.get(user=user)
 
-    # TODO: check if album exists
+    try:
+        album = Album.objects.get(pk=album_id)
+    except ObjectDoesNotExist:
+        return redirect("/view_basket")
 
-    album = Album.objects.get(pk=album_id)
     sbi = ShoppingBasketItems.objects.filter(basket=shopping_basket, album=album).first()
     if sbi is None:
         sbi = ShoppingBasketItems(basket=shopping_basket, album=album)
@@ -111,11 +117,16 @@ def add_to_basket(request, album_id):
 def remove_from_basket(request, album_id):
     user = request.user
     shopping_basket = ShoppingBasket.objects.get(user=user)
-    album = Album.objects.get(pk=album_id)
+
+    try:
+        album = Album.objects.get(pk=album_id)
+    except ObjectDoesNotExist:
+        return redirect("/view_basket")
+
     sbi = ShoppingBasketItems.objects.filter(basket=shopping_basket, album=album).first()
 
     if sbi is None:
-        return redirect("/")
+        return redirect("/view_basket")
     elif sbi.quantity > 1:
         sbi.quantity -= 1
         sbi.save()
