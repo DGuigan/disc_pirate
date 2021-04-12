@@ -7,10 +7,36 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <table id="album-table">
+      <tr>
+        <th>Album</th>
+        <th>Artist</th>
+        <th>Genre</th>
+      </tr>
+    </table>
     <script>
       fetch("http://localhost:8000/api/albums/?format=json")
       .then(response => response.json())
-      .then(data => console.log(data));
+      .then(data => {
+        console.log(data);
+        let table = document.getElementById("album-table");
+        data.forEach(element => {
+          let newRow = document.createElement("tr");
+          table.appendChild(newRow);
+
+          let name = document.createElement("td");
+          let artist = document.createElement("td");
+          let genre = document.createElement("td");
+
+          name.innerHTML = element['albumName'];
+          artist.innerHTML = element['artist'];
+          genre.innerHTML = element['genre'];
+
+          newRow.append(name);
+          newRow.append(artist);
+          newRow.append(genre);
+        })
+      })
     </script>
   </body>
 </html>
