@@ -14,6 +14,15 @@
         <th>Genre</th>
       </tr>
     </table>
+
+    <form id="login-form" method="POST" action="">
+      <label for="username">Username</label>
+      <input id="form-username" name="username" type="text" placeholder="Username">
+      <label for="password">Password</label>
+      <input id="form-password" name="password" type="password" placeholder="Password">
+      <input type="submit" value="login">
+    </form>
+
     <script>
       fetch("http://localhost:8000/api/albums/?format=json")
       .then(response => response.json())
@@ -37,6 +46,22 @@
           newRow.append(genre);
         })
       })
+
+      // event listener for login
+      let loginform = document.getElementById("login-form");
+      loginform.addEventListener("submit", (event)=>{
+        event.preventDefault();
+        let user = document.getElementById("form-username").value;
+        let pass = document.getElementById("form-password").value;
+        fetch("http://localhost:8000/token/", {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify( {username: user, password: pass} )
+        }).then(response => response.json()).then(data => console.log(data))
+      }, true);
     </script>
   </body>
 </html>
