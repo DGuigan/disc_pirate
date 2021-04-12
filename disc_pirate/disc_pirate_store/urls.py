@@ -2,6 +2,7 @@ from . import views
 from .views import *
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)  # when we go to /api/users, load the users json
@@ -24,4 +25,5 @@ urlpatterns = [
     path('user_page/', views.user_page, name="admin_page"),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),  # localhost api will be entrypoint to our REST api
+    path('token/', obtain_auth_token, name="api_token_auth"),
 ]

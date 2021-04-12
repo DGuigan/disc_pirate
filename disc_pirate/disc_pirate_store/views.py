@@ -211,3 +211,5 @@ class UserViewSet(viewsets.ModelViewSet):
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
+    authentication_classes = []
+    permission_classes = []
