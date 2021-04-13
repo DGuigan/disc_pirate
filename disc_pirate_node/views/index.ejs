@@ -12,6 +12,7 @@
         <th>Album</th>
         <th>Artist</th>
         <th>Genre</th>
+        <th>Cover</th>
       </tr>
     </table>
 
@@ -36,14 +37,20 @@
           let name = document.createElement("td");
           let artist = document.createElement("td");
           let genre = document.createElement("td");
+          let artTd = document.createElement("td");
+          let art = document.createElement("img");
+          
 
           name.innerHTML = element['albumName'];
           artist.innerHTML = element['artist'];
           genre.innerHTML = element['genre'];
+          art.src = element['albumArt'];
 
-          newRow.append(name);
-          newRow.append(artist);
-          newRow.append(genre);
+          newRow.appendChild(name);
+          newRow.appendChild(artist);
+          newRow.appendChild(genre);
+          newRow.appendChild(artTd);
+          artTd.appendChild(art);
         })
       })
 
