@@ -11,7 +11,12 @@ from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import viewsets
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
 from random import choice
+import json
 
 
 def index(request):
@@ -95,9 +100,13 @@ def logout_view(request):
     return redirect('/')
 
 
-@login_required
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def add_to_basket(request, album_id):
     user = request.user
+    if user.is_anonymous :
+        token = request.META.get('HTTP_AUTHORIZATION').split(" ")[1]
+        user = Token.objects.get(key=token).user
     shopping_basket = ShoppingBasket.objects.get(user=user)
 
     # if album does not exist redirect to view_basket page without modifying basket
@@ -114,7 +123,12 @@ def add_to_basket(request, album_id):
         sbi.quantity += 1
         sbi.save()
 
-    return redirect("/view_basket")
+    flag = request.GET.get('format', '')
+    if flag == "json":
+        status_serialized = json.dumps({"status": "success"})
+        return HttpResponse(status_serialized, content_type="application/json")
+    else:
+        return redirect("/view_basket")
 
 
 @login_required
