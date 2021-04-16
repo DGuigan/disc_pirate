@@ -11,4 +11,5 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class AlbumSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Album
-        fields = '__all__'
+        # not using '__all__' because it doesn't serialize id, there is probably a better way to do this
+        fields = ['id', 'albumArt', 'albumName', 'artist', 'description', 'genre', 'price', 'releaseDate']
