@@ -155,15 +155,30 @@ def remove_from_basket(request, album_id):
     return redirect("/view_basket")
 
 
-@login_required
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def view_basket(request):
-    shopping_basket = ShoppingBasket.objects.get(user=request.user)
+    user = request.user
+
+    if user.is_anonymous:
+        token = request.META.get('HTTP_AUTHORIZATION').split(" ")[1]
+        user = Token.objects.get(key=token).user
+
+    shopping_basket = ShoppingBasket.objects.get(user=user)
 
     basket_items = ShoppingBasketItems.objects.filter(basket=shopping_basket)
     if len(basket_items) == 0:
         basket_items = None
 
-    return render(request, 'view_basket.html', {'basket': shopping_basket, 'basket_items': basket_items})
+    flag = request.GET.get("format", "")
+    # if json request serialize basket info and send back, probably a better way to do this
+    if flag == "json":
+        basket_items_serialized = json.dumps([{"albumName": item.album.albumName,
+                                               "artist": item.album.artist,
+                                               "quantity": item.quantity} for item in basket_items])
+        return HttpResponse(basket_items_serialized, content_type="application/json")
+    else:
+        return render(request, 'view_basket.html', {'basket': shopping_basket, 'basket_items': basket_items})
 
 
 @login_required
