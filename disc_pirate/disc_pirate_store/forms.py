@@ -4,6 +4,7 @@ from django.forms import ModelForm
 from django.db import transaction
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
+from rest_framework.authtoken.models import Token
 
 
 class AlbumForm(ModelForm):
@@ -44,6 +45,7 @@ class CASignupForm(UserCreationForm):
         user.is_admin = False
         user.save()
         ShoppingBasket(user=user).save()
+        Token.objects.create(user=user)
         return user
 
 
@@ -57,6 +59,7 @@ class AdminSignupForm(UserCreationForm):
         user.is_admin = True
         user.save()
         ShoppingBasket(user=user).save()
+        Token.objects.create(user=user)
         return user
 
 
