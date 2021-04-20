@@ -15,4 +15,5 @@ loginform.addEventListener("submit", (event)=>{
     console.log(data);
     window.token = data['token'];        
   })
+  loginform.innerHTML = "";
 }, true);
