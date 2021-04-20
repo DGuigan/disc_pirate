@@ -4,6 +4,20 @@ function showAlbums() {
       .then(data => {
         console.log(data);
         let table = document.getElementById("album-table");
+
+        // add table headings
+        let newRow = document.createElement("tr");
+        table.appendChild(newRow);
+
+        let headings = ["", "Album", "Artist", "Genre", "Cover"];
+
+        headings.forEach(heading => {
+          let newCol = document.createElement("th");
+          newRow.appendChild(newCol);
+          newCol.innerHTML = heading;
+        })
+
+        // add albums to table
         data.forEach(element => {
           let newRow = document.createElement("tr");
           table.appendChild(newRow);
@@ -48,17 +62,7 @@ function hideAlbums() {
   // create blank table
   let table = document.getElementById("album-table");
   table.innerHTML = "";
-  let newRow = document.createElement("tr");
-  table.appendChild(newRow);
-
-  let headings = ["", "Album", "Artist", "Genre", "Cover"];
-
-  headings.forEach(heading => {
-    let newCol = document.createElement("th");
-    newRow.appendChild(newCol);
-    newCol.innerHTML = heading;
-  })
-
+  
   // reverse button function
   let album_button = document.getElementById("album-button");
     album_button.onclick = showAlbums;
@@ -95,6 +99,20 @@ function showBasket() {
     }).then(response => response.json())
       .then(data => {
         let table = document.getElementById("basket-table");
+
+        // create table headings
+        let newRow = document.createElement("tr");
+        table.appendChild(newRow);
+
+        let headings = ["Album", "Artist", "Quantity"];
+
+        headings.forEach(heading => {
+          let newCol = document.createElement("th");
+          newRow.appendChild(newCol);
+          newCol.innerHTML = heading;
+        })
+
+        // add basket items to table
         data.forEach(element => {
           let newRow = document.createElement("tr");
           table.appendChild(newRow);
@@ -128,16 +146,7 @@ function hideBasket() {
   // create blank table
   let table = document.getElementById("basket-table");
   table.innerHTML = "";
-  let newRow = document.createElement("tr");
-  table.appendChild(newRow);
-
-  let headings = ["Album", "Artist", "Quantity"];
-
-  headings.forEach(heading => {
-    let newCol = document.createElement("th");
-    newRow.appendChild(newCol);
-    newCol.innerHTML = heading;
-  })
+  
 
   // reverse button function
   let album_button = document.getElementById("basket-button");
