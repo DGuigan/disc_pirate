@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <button id="album-button" onclick="showAlbums()">Show Albums</button>
+
+
+    <!-- Table for all albums, populated in script -->
+    <table id="album-table"></table>
+
+    <br>
+
+    <script src = "/javascripts/albums.js"></script>
+  </body>
+</html>
