@@ -16,7 +16,7 @@
                 <li class="nav-item">
                     <button id="album-toggle" type="button" class="btn btn-primary" onclick="toggleAlbums()">Albums</button>
                 </li>
-                <li class="nav-item">
+                <li id="nav-login" class="nav-item">
                     <!-- login form, event listener in script, gotta make it pretty -->
                     <form id="login-form" method="POST" action="">
                         <label for="username">Username</label>
@@ -32,7 +32,13 @@
 
     <div class="container-fluid">
         <!-- div for all album cards, filled by albums.js -->
-        <div id="all-albums" class="row"></div>
+        <div id="all-albums" class="row">
+            <div class="row"><h3>All Albums</h3></div>
+            <div id="all-album-cards" class="row"></div>
+        </div>
+
+        <!-- div to display basket, filled by albums.js -->
+        <div id="basket" class="row"></div>
     </div>
 
     <script src="/javascripts/loginForm.js"></script>

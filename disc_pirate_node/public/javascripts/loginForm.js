@@ -1,5 +1,7 @@
 // event listener for login
+let loginContainer = document.getElementById("nav-login");
 let loginform = document.getElementById("login-form");
+
 loginform.addEventListener("submit", (event)=>{
   event.preventDefault();
   let user = document.getElementById("form-username").value;
@@ -15,5 +17,10 @@ loginform.addEventListener("submit", (event)=>{
     console.log(data);
     window.token = data['token'];        
   })
-  loginform.innerHTML = "";
+
+  // replace form with greeting
+  let greeting = document.createElement("h3");
+  greeting.innerHTML = `Hello ${user}`;
+  loginContainer.innerHTML = "";
+  loginContainer.appendChild(greeting);
 }, true);
