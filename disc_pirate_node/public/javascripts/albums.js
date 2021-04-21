@@ -82,3 +82,60 @@ function hideBasket() {
     album_button.innerHTML = "Show Basket";
     console.log("Basket hidden");
 }
+
+fetch("http://localhost:8000/api/albums/?format=json")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    let album_div = document.getElementById("all-albums");
+
+    // add album cards
+    data.forEach(element => {
+      let card_col = document.createElement("div");
+      card_col.classList.add("col-3");
+
+      let card = document.createElement("div");
+      card.classList.add("card");
+
+      let card_art = document.createElement("img");
+      card_art.classList.add("card-img-top");
+      card_art.src = element['albumArt'];
+
+      let card_body = document.createElement("div");
+      card_body.classList.add("card-body");
+
+      let card_title = document.createElement("h4");
+      card_title.classList.add("card-title");
+      card_title.innerHTML = element['albumName'];
+
+      let card_text = document.createElement("div");
+      card_text.classList.add("card-text");
+      
+      let artist = document.createElement("p");
+      artist.innerHTML = `Artist: ${element['artist']}`;
+
+      let price = document.createElement("p");
+      price.innerHTML = `Price: ${element['price']}`;
+
+      let desc = document.createElement("p");
+      desc.innerHTML = element['description'];
+
+      let card_button = document.createElement("button");
+      card_button.type = "button";
+      card_button.classList.add("btn", "btn-primary");
+      card_button.innerHTML = "Add to basket";
+      
+      card_button.addEventListener("click", function() {
+          addToBasket(element['id']);
+      });
+
+      album_div.appendChild(card_col);
+      card_col.appendChild(card);
+      card.appendChild(card_art);
+      card.appendChild(card_body);
+      card_body.appendChild(card_title);
+      card_body.appendChild(card_text);
+      card_text.append(artist, price, desc);
+      card_body.appendChild(card_button);
+    })
+  })
