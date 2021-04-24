@@ -19,11 +19,21 @@
                 <li id="nav-login" class="nav-item">
                     <!-- login form, event listener in script, gotta make it pretty -->
                     <form id="login-form" method="POST" action="">
-                        <label for="username">Username</label>
-                        <input id="form-username" name="username" type="text" placeholder="Username">
-                        <label for="password">Password</label>
-                        <input id="form-password" name="password" type="password" placeholder="Password">
-                        <input type="submit" value="login">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="row">
+                                        <input id="form-username" name="username" type="text" placeholder="Username">
+                                    </div>
+                                    <div class="row">
+                                        <input id="form-password" name="password" type="password" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <input type="submit" value="login">
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </li>
             </ul>
