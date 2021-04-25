@@ -15,7 +15,7 @@ loginform.addEventListener("submit", (event)=>{
   }).then(response => response.json()).then(data => {
     console.log(data);
     window.token = data['token'];
-    fillBasket();       
+    updateBasket();       
   })
 
   let basket = document.getElementById("basket-container");
@@ -31,12 +31,12 @@ checkoutButton.addEventListener("click", (event) => {
   let contact = document.getElementById("checkout-form-contact").value;
 
   if (window.token) {
-    fetch("http://localhost:8000/order_form?format=json", {
+    fetch("http://localhost:8000/order_form/?format=json", {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Autherization': `Token ${window.token}`
+        'Authorization': `Token ${window.token}`
       },
       body: JSON.stringify( {address: addr, contactNumber: contact} )
     }).then(response => response.json()).then(data => console.log(data))

@@ -24,7 +24,7 @@
                             <table id="basket-table" class="dropdown-item table"></table>
                         </div>
                         <div class="row justify-content-center">
-                            <button id="checkout-button" class="btn btn-primary">Checkout</button>
+                            <button class="btn btn-primary">Checkout</button>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <form id="checkout-form">
+            <form id="checkout-form" method="POST", action=".">
                 <input type="text" name="address" placeholder="Address" id="checkout-form-address">
                 <input type="text" name="contactNumber" placeholder="Contact Number" id="checkout-form-contact">
                 <button id="checkout-button">Checkout</button>

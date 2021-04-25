@@ -199,8 +199,8 @@ def order_form(request):
     basket_items = ShoppingBasketItems.objects.filter(basket=shopping_basket)
 
     # if basket is empty redirect to view_basket page
-    if len(basket_items) == 0:
-        return redirect('/view_basket')
+    # if len(basket_items) == 0:
+    #     return redirect('/view_basket')
 
     if request.method == 'POST':
         if not request.POST:
@@ -224,7 +224,7 @@ def order_form(request):
             flag = request.GET.get("format", "")
             # if json request serialize basket info and send back, probably a better way to do this
             if flag == "json":
-                return JsonResponse({"oderStatus": "success"})
+                return JsonResponse({"orderStatus": "success"})
             else:
                 return redirect('/')
 
