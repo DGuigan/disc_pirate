@@ -1,5 +1,4 @@
 // event listener for login
-let loginContainer = document.getElementById("nav-login");
 let loginform = document.getElementById("login-form");
 
 loginform.addEventListener("submit", (event)=>{
@@ -15,12 +14,11 @@ loginform.addEventListener("submit", (event)=>{
     body: JSON.stringify( {username: user, password: pass} )
   }).then(response => response.json()).then(data => {
     console.log(data);
-    window.token = data['token'];        
+    window.token = data['token'];
+    fillBasket();       
   })
 
-  // replace form with greeting
-  let greeting = document.createElement("h3");
-  greeting.innerHTML = `Hello ${user}`;
-  loginContainer.innerHTML = "";
-  loginContainer.appendChild(greeting);
+  let basket = document.getElementById("basket-container");
+  basket.classList.remove("d-none");
+  loginform.classList.add("d-none");
 }, true);

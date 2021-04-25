@@ -15,7 +15,7 @@ function addToBasket(albumId) {
   }
 }
 
-function showBasket() {
+function fillBasket() {
   if (window.token) {
     fetch("http://localhost:8000/view_basket?format=json", {
       method: 'GET',
@@ -58,28 +58,10 @@ function showBasket() {
           newRow.appendChild(quantity);
         })
       })
-
-    let album_button = document.getElementById("basket-button");
-    album_button.onclick = hideBasket;
-    album_button.innerHTML = "Hide Basket";
-    console.log("Albums loaded");
     }
     else {
       alert("Sign in");
     }
-}
-
-function hideBasket() {
-  // create blank table
-  let table = document.getElementById("basket-table");
-  table.innerHTML = "";
-  
-
-  // reverse button function
-  let album_button = document.getElementById("basket-button");
-    album_button.onclick = showBasket;
-    album_button.innerHTML = "Show Basket";
-    console.log("Basket hidden");
 }
 
 function getAlbums() {

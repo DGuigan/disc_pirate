@@ -5,12 +5,3 @@ body {
 a {
   color: #00B7FF;
 }
-
-#login-form .col {
-  margin: 0;
-  border: 0;
-}
-
-#login-row {
-  min-width: none;
-}
