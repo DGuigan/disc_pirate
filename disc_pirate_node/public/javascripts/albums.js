@@ -8,14 +8,17 @@ function addToBasket(albumId) {
         'Authorization': `Token ${window.token}`
         }
       }
-    ).then(response => response.json()).then(data => console.log(data));
+    ).then(response => response.json()).then(data => {
+      console.log(data);
+      updateBasket();
+    });
   }
   else {
     alert("Log in to proceed");
   }
 }
 
-function fillBasket() {
+function updateBasket() {
   if (window.token) {
     fetch("http://localhost:8000/view_basket?format=json", {
       method: 'GET',
@@ -27,6 +30,8 @@ function fillBasket() {
     }).then(response => response.json())
       .then(data => {
         let table = document.getElementById("basket-table");
+
+        table.innerHTML = "";
 
         // create table headings
         let newRow = document.createElement("tr");
