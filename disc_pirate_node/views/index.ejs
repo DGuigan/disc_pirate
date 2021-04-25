@@ -46,16 +46,23 @@
                 </div>
             </div>
         </form>
-      </nav>
+    </nav>
 
     <div class="container-fluid">
+        <div class="row">
+            <form id="checkout-form">
+                <input type="text" name="address" placeholder="Address" id="checkout-form-address">
+                <input type="text" name="contactNumber" placeholder="Contact Number" id="checkout-form-contact">
+                <button id="checkout-button">Checkout</button>
+            </form>
+        </div>
         <!-- div for all album cards, filled by albums.js -->
         <div id="all-albums" class="row">
             <div id="all-album-cards" class="row"></div>
         </div>
     </div>
 
-    <script src="/javascripts/loginForm.js"></script>
+    <script src="/javascripts/forms.js"></script>
     <script type="text/javascript" src="/javascripts/albums.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
