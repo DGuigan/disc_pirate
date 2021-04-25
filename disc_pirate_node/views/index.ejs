@@ -14,17 +14,28 @@
         </a>
 
         <ul class="navbar-nav ml-auto">
-            <li id="basket-container" class="nav-item dropdown d-none">
+            <li id="nav-basket-link" class="nav-item dropdown d-none">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Basket
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <div class="container-fluid">
+                    <div  id="basket-container" class="container-fluid">
                         <div class="row justify-content-center">
                             <table id="basket-table" class="dropdown-item table"></table>
                         </div>
-                        <div class="row justify-content-center">
-                            <button class="btn btn-primary">Checkout</button>
+                        <div id="checkout-form-container" class="row justify-content-center">
+                            <form id="checkout-form" method="POST", action="."></form>
+                                <div class="col">
+                                    <button  id="checkout-button" class="btn btn-primary">Checkout</button>
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="address" placeholder="Address" id="checkout-form-address">
+                                    <input type="text" name="contactNumber" placeholder="Contact Number" id="checkout-form-contact">
+                                </div>
+                            </form>
+                        </div>
+                        <div id="empty-basket" class="row d-none">
+                            <h3>Your basket is empty</h3>
                         </div>
                     </div>
                 </div>
@@ -49,13 +60,6 @@
     </nav>
 
     <div class="container-fluid">
-        <div class="row">
-            <form id="checkout-form" method="POST", action=".">
-                <input type="text" name="address" placeholder="Address" id="checkout-form-address">
-                <input type="text" name="contactNumber" placeholder="Contact Number" id="checkout-form-contact">
-                <button id="checkout-button">Checkout</button>
-            </form>
-        </div>
         <!-- div for all album cards, filled by albums.js -->
         <div id="all-albums" class="row">
             <div id="all-album-cards" class="row"></div>

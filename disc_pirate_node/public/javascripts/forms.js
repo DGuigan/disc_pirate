@@ -18,7 +18,7 @@ loginform.addEventListener("submit", (event)=>{
     updateBasket();       
   })
 
-  let basket = document.getElementById("basket-container");
+  let basket = document.getElementById("nav-basket-link");
   basket.classList.remove("d-none");
   loginform.classList.add("d-none");
 }, true);
@@ -39,7 +39,14 @@ checkoutButton.addEventListener("click", (event) => {
         'Authorization': `Token ${window.token}`
       },
       body: JSON.stringify( {address: addr, contactNumber: contact} )
-    }).then(response => response.json()).then(data => console.log(data))
+    }).then(response => response.json()).then(data => {
+      console.log(data);
+      updateBasket();
+
+      // form.reset() didn't work for me but this works
+      document.getElementById("checkout-form-address").value = null;
+      document.getElementById("checkout-form-contact").value = null;
+    })
   }
   else {
     alert("SIGN IN!");

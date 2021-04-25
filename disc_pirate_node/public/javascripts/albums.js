@@ -29,39 +29,51 @@ function updateBasket() {
       }
     }).then(response => response.json())
       .then(data => {
+        let checkoutForm = document.getElementById("checkout-form-container");
+        let emptyBasket = document.getElementById("empty-basket");
         let table = document.getElementById("basket-table");
-
         table.innerHTML = "";
+        if (data.length == 0) {
+          emptyBasket.classList.remove("d-none");
+          checkoutForm.classList.add("d-none");
+        }
+        else {
+          if (checkoutForm.classList.contains("d-none")) {
+            checkoutForm.classList.remove("d-none");
+          }
 
-        // create table headings
-        let newRow = document.createElement("tr");
-        table.appendChild(newRow);
+          emptyBasket.classList.add("d-none");
 
-        let headings = ["Album", "Artist", "Quantity"];
-
-        headings.forEach(heading => {
-          let newCol = document.createElement("th");
-          newRow.appendChild(newCol);
-          newCol.innerHTML = heading;
-        })
-
-        // add basket items to table
-        data.forEach(element => {
+          // create table headings
           let newRow = document.createElement("tr");
           table.appendChild(newRow);
 
-          let name = document.createElement("td");
-          let artist = document.createElement("td");
-          let quantity = document.createElement("td");
-          
-          name.innerHTML = element['albumName'];
-          artist.innerHTML = element['artist'];
-          quantity.innerHTML = element['quantity'];
+          let headings = ["Album", "Artist", "Quantity"];
 
-          newRow.appendChild(name);
-          newRow.appendChild(artist);
-          newRow.appendChild(quantity);
-        })
+          headings.forEach(heading => {
+            let newCol = document.createElement("th");
+            newRow.appendChild(newCol);
+            newCol.innerHTML = heading;
+          })
+
+          // add basket items to table
+          data.forEach(element => {
+            let newRow = document.createElement("tr");
+            table.appendChild(newRow);
+
+            let name = document.createElement("td");
+            let artist = document.createElement("td");
+            let quantity = document.createElement("td");
+            
+            name.innerHTML = element['albumName'];
+            artist.innerHTML = element['artist'];
+            quantity.innerHTML = element['quantity'];
+
+            newRow.appendChild(name);
+            newRow.appendChild(artist);
+            newRow.appendChild(quantity);
+          })
+        }
       })
     }
     else {
