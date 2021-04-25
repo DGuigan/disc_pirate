@@ -3,7 +3,7 @@ from .forms import *
 from .decorators import admin_required
 from .serializers import *
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.generic import CreateView
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
@@ -13,10 +13,11 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import viewsets
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.decorators import authentication_classes, permission_classes
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
-from random import choice
 import json
+from random import choice
 
 
 def index(request):
@@ -125,8 +126,7 @@ def add_to_basket(request, album_id):
 
     flag = request.GET.get('format', '')
     if flag == "json":
-        status_serialized = json.dumps({"status": "success"})
-        return HttpResponse(status_serialized, content_type="application/json")
+        return JsonResponse({"addToBasketStatus": "success"})
     else:
         return redirect("/view_basket")
 
@@ -174,19 +174,26 @@ def view_basket(request):
     # if json request serialize basket info and send back, probably a better way to do this
     if flag == "json":
         if basket_items:
-            basket_items_serialized = json.dumps([{"albumName": item.album.albumName,
-                                                   "artist": item.album.artist,
-                                                   "quantity": item.quantity} for item in basket_items])
+            basket_items_json = json.dumps([{"albumName": item.album.albumName,
+                                             "artist": item.album.artist,
+                                             "quantity": item.quantity} for item in basket_items])
         else:
-            basket_items_serialized = json.dumps([])
-        return HttpResponse(basket_items_serialized, content_type="application/json")
+            basket_items_json = json.dumps([]);
+        return HttpResponse(basket_items_json, content_type="application/json")
     else:
         return render(request, 'view_basket.html', {'basket': shopping_basket, 'basket_items': basket_items})
 
 
-@login_required
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
+@csrf_exempt
 def order_form(request):
     user = request.user
+
+    if user.is_anonymous:
+        token = request.META.get('HTTP_AUTHORIZATION').split(" ")[1]
+        user = Token.objects.get(key=token).user
+
     shopping_basket = ShoppingBasket.objects.get(user=user)
 
     basket_items = ShoppingBasketItems.objects.filter(basket=shopping_basket)
@@ -196,7 +203,12 @@ def order_form(request):
         return redirect('/view_basket')
 
     if request.method == 'POST':
-        form = OrderForm(request.POST, request.FILES)
+        if not request.POST:
+            body_unicode = request.body.decode('utf-8')
+            body = json.loads(body_unicode)
+            form = OrderForm(body)
+        else:
+            form = OrderForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
             order.user = user
@@ -209,7 +221,13 @@ def order_form(request):
                 order_item.save()
                 basket_item.delete()
 
-            return redirect('/')
+            flag = request.GET.get("format", "")
+            # if json request serialize basket info and send back, probably a better way to do this
+            if flag == "json":
+                return JsonResponse({"oderStatus": "success"})
+            else:
+                return redirect('/')
+
     elif request.method == 'GET':
         form = OrderForm()
         return render(request, 'order_form.html', {'form': form})
