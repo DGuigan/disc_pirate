@@ -86,12 +86,12 @@ function getAlbums() {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      let album_div = document.getElementById("all-album-cards");
+      let album_div = document.getElementById("all-albums");
 
       // add album cards
       data.forEach(element => {
         let card_col = document.createElement("div");
-        card_col.classList.add("col-3");
+        card_col.classList.add("mt-2", "mb-2", "col-xs-12", "col-sm-6", "col-md-4", "col-lg-4", "col-xl-3");
 
         let card = document.createElement("div");
         card.classList.add("card", "h-100");
@@ -103,26 +103,29 @@ function getAlbums() {
         let card_body = document.createElement("div");
         card_body.classList.add("card-body");
 
-        let card_title = document.createElement("h4");
+        let card_title = document.createElement("h3");
         card_title.classList.add("card-title");
         card_title.innerHTML = element['albumName'];
-
-        let card_text = document.createElement("div");
-        card_text.classList.add("card-text");
         
         let artist = document.createElement("p");
-        artist.innerHTML = `Artist: ${element['artist']}`;
+        artist.classList.add("card-text");
+        artist.innerHTML = `<b>Artist</b>: ${element['artist']}`;
 
         let price = document.createElement("p");
-        price.innerHTML = `Price: ${element['price']}`;
+        price.classList.add("card-text");
+        price.innerHTML = `<b>Price</b>: ${element['price']}`;
 
         let desc = document.createElement("p");
+        desc.classList.add("card-text", "font-italic");
         desc.innerHTML = element['description'];
 
         let card_button = document.createElement("button");
         card_button.type = "button";
-        card_button.classList.add("btn", "btn-primary");
+        card_button.classList.add("btn", "btn-primary", "mt-100");
         card_button.innerHTML = "Add to basket";
+
+        let card_footer = document.createElement("div");
+        card_footer.classList.add("card-footer");
         
         card_button.addEventListener("click", function() {
             addToBasket(element['id']);
@@ -133,9 +136,11 @@ function getAlbums() {
         card.appendChild(card_art);
         card.appendChild(card_body);
         card_body.appendChild(card_title);
-        card_body.appendChild(card_text);
-        card_text.append(artist, price, desc);
-        card_body.appendChild(card_button);
+        card_body.appendChild(artist);
+        card_body.appendChild(price);
+        card_body.appendChild(desc);
+        card.appendChild(card_footer);
+        card_footer.appendChild(card_button);
       })
     })
   }
