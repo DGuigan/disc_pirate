@@ -19,7 +19,7 @@
                     Basket
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <div  id="basket-container" class="container-fluid">
+                    <div id="basket-container" class="container-fluid">
                         <div class="row justify-content-center">
                             <table id="basket-table" class="dropdown-item table"></table>
                         </div>
@@ -36,6 +36,22 @@
                         </div>
                         <div id="empty-basket" class="d-none">
                             <h3>Your basket is empty</h3>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li id="nav-orders-link" class="nav-item dropdown d-none">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    All Orders
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <div id="orders-container" class="container-fluid">
+                        <div class="row justify-content-center">
+                            <table id="orders-table" class="dropdown-item table"></table>
+                        </div>
+                        <div id="empty-basket" class="d-none">
+                            <h3>No orders at the moment</h3>
                         </div>
                     </div>
                 </div>
@@ -66,6 +82,7 @@
 
     <script src="/javascripts/forms.js"></script>
     <script type="text/javascript" src="/javascripts/albums.js"></script>
+    <script type="text/javascript" src="/javascripts/orders.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

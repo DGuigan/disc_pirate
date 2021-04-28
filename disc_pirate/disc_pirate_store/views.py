@@ -253,6 +253,38 @@ def user_page(request):
     return render(request, 'user_page.html', {'orders': orders})
 
 
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
+def view_orders(request):
+    user = request.user
+
+    if user.is_anonymous:
+        token = request.META.get('HTTP_AUTHORIZATION').split(" ")[1]
+        user = Token.objects.get(key=token).user
+
+    if user.is_admin:
+        orders = [{"order": order.id,
+                   "address": order.address,
+                   "date": str(order.date),
+                   "number": order.contactNumber,
+                   "user": CaUser.objects.get(pk=order.user_id).username}
+                  for order in Order.objects.all()]
+    else:
+        orders = [{"order": order.id,
+                   "address": order.address,
+                   "date": str(order.date),
+                   "number": order.contactNumber}
+                  for order in Order.objects.filter(user=user)]
+
+    flag = request.GET.get("format", "")
+
+    if flag == "json":
+        orders_json = json.dumps(orders)
+        return HttpResponse(orders_json, content_type="application/json")
+    else:
+        HttpResponse(orders)
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CaUser.objects.all()
     serializer_class = UserSerializer

@@ -23,6 +23,7 @@ urlpatterns = [
     path('order_form/', views.order_form, name="order_form"),
     path('admin_page/', views.admin_page, name="admin_page"),
     path('user_page/', views.user_page, name="admin_page"),
+    path('view_orders/', views.view_orders, name="view_orders"),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),  # localhost api will be entrypoint to our REST api
     path('token/', obtain_auth_token, name="api_token_auth"),
