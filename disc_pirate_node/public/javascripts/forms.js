@@ -30,7 +30,7 @@ checkoutButton.addEventListener("click", (event) => {
   let addr = document.getElementById("checkout-form-address").value;
   let contact = document.getElementById("checkout-form-contact").value;
 
-  if (window.token) {
+  if (window.token && addr && contact) {
     fetch("http://localhost:8000/order_form/?format=json", {
       method: 'POST',
       headers: {
@@ -48,7 +48,10 @@ checkoutButton.addEventListener("click", (event) => {
       document.getElementById("checkout-form-contact").value = null;
     })
   }
-  else {
+  else if (!window.token){
     alert("SIGN IN!");
+  }
+  else {
+    alert("Order form must be filled in.");
   }
 }, true);

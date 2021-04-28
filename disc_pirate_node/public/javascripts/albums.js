@@ -94,7 +94,7 @@ function getAlbums() {
         card_col.classList.add("col-3");
 
         let card = document.createElement("div");
-        card.classList.add("card");
+        card.classList.add("card", "h-100");
 
         let card_art = document.createElement("img");
         card_art.classList.add("card-img-top");
