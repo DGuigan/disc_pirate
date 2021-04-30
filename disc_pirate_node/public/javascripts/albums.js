@@ -34,7 +34,10 @@ function updateBasket() {
         let table = document.getElementById("basket-table");
         let totalPrice = 0;
 
+        // clear table as it will be rebuilt
         table.innerHTML = "";
+
+        // if basket empty inform user
         if (data.length == 0) {
           emptyBasket.classList.remove("d-none");
           checkoutForm.classList.add("d-none");
@@ -53,6 +56,7 @@ function updateBasket() {
           let headings = ["Album", "Artist", "Quantity", "Single Price"];
           let basketKeys = Object.keys(data[0]);
 
+          // create table headings
           headings.forEach(heading => {
             let newCol = document.createElement("th");
             newRow.appendChild(newCol);
@@ -64,6 +68,7 @@ function updateBasket() {
             let newRow = document.createElement("tr");
             table.appendChild(newRow);
 
+            // add each column to the new row
             basketKeys.forEach(key => {
               let column = document.createElement("td");
               column.innerHTML = element[key];

@@ -12,7 +12,12 @@ function updateOrders() {
             console.log(data);
             let noOrders = document.getElementById("no-orders");
             let table = document.getElementById("orders-table");
+
+            // clear table as it will be rebuilt
             table.innerHTML = "";
+
+            // if no orders inform user
+            // checking for 1 because object always contains admin flag
             if (data.length == 1) {
                 noOrders.classList.remove("d-none");
             }
@@ -47,6 +52,7 @@ function updateOrders() {
                     let newRow = document.createElement("tr");
                     table.appendChild(newRow);
 
+                    // add each column to the new row
                     orderKeys.forEach(key => {
                         let column = document.createElement("td");
                         column.innerHTML = element[key];

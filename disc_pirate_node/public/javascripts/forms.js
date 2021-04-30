@@ -14,11 +14,15 @@ loginform.addEventListener("submit", (event)=>{
     body: JSON.stringify( {username: user, password: pass} )
   }).then(response => response.json()).then(data => {
     console.log(data);
+    // store user token in window
     window.token = data['token'];
+
+    // update tables for first time
     updateBasket();
     updateOrders();    
   })
 
+  // adjust layout of navbar for logged in user
   let basket = document.getElementById("nav-basket-link");
   let orders = document.getElementById("nav-orders-link");
   basket.classList.remove("d-none");
@@ -44,10 +48,12 @@ checkoutButton.addEventListener("click", (event) => {
       body: JSON.stringify( {address: addr, contactNumber: contact} )
     }).then(response => response.json()).then(data => {
       console.log(data);
+
+      // update tables as they will have changed
       updateBasket();
       updateOrders();
 
-      // form.reset() didn't work for me but this works
+      // reset form values
       document.getElementById("checkout-form-address").value = null;
       document.getElementById("checkout-form-contact").value = null;
     })
