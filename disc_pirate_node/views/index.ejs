@@ -20,22 +20,22 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <div id="basket-container" class="container-fluid">
+                        <div id="empty-basket" class="d-none">
+                            <h2 class="dropdown-header">Your basket is empty</h2>
+                        </div>
                         <div class="row justify-content-center">
                             <table id="basket-table" class="dropdown-item table"></table>
                         </div>
                         <div id="checkout-form-container" class="row justify-content-center">
                             <form id="checkout-form" method="POST", action="."></form>
-                                <div class="col-3 d-flex justify-content-center">
+                                <div class="col-4 d-flex justify-content-center">
                                     <button  id="checkout-button" class="btn btn-primary">Checkout</button>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-8">
                                     <input class="form-control" type="text" name="address" placeholder="Address" id="checkout-form-address">
                                     <input class="form-control" type="text" name="contactNumber" placeholder="Contact Number" id="checkout-form-contact">
                                 </div>
                             </form>
-                        </div>
-                        <div id="empty-basket" class="d-none">
-                            <h3>Your basket is empty</h3>
                         </div>
                     </div>
                 </div>
@@ -47,11 +47,11 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <div id="orders-container" class="container-fluid">
+                        <div id="no-orders" class="d-none">
+                            <h2 class="dropdown-header">No orders at the moment</h2>
+                        </div>
                         <div class="row justify-content-center">
                             <table id="orders-table" class="dropdown-item table"></table>
-                        </div>
-                        <div id="no-orders" class="d-none">
-                            <h3>No orders at the moment</h3>
                         </div>
                     </div>
                 </div>

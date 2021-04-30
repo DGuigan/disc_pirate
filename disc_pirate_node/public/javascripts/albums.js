@@ -32,6 +32,8 @@ function updateBasket() {
         let checkoutForm = document.getElementById("checkout-form-container");
         let emptyBasket = document.getElementById("empty-basket");
         let table = document.getElementById("basket-table");
+        let totalPrice = 0;
+
         table.innerHTML = "";
         if (data.length == 0) {
           emptyBasket.classList.remove("d-none");
@@ -48,7 +50,8 @@ function updateBasket() {
           let newRow = document.createElement("tr");
           table.appendChild(newRow);
 
-          let headings = ["Album", "Artist", "Quantity"];
+          let headings = ["Album", "Artist", "Quantity", "Single Price"];
+          let basketKeys = Object.keys(data[0]);
 
           headings.forEach(heading => {
             let newCol = document.createElement("th");
@@ -61,18 +64,14 @@ function updateBasket() {
             let newRow = document.createElement("tr");
             table.appendChild(newRow);
 
-            let name = document.createElement("td");
-            let artist = document.createElement("td");
-            let quantity = document.createElement("td");
-            
-            name.innerHTML = element['albumName'];
-            artist.innerHTML = element['artist'];
-            quantity.innerHTML = element['quantity'];
-
-            newRow.appendChild(name);
-            newRow.appendChild(artist);
-            newRow.appendChild(quantity);
+            basketKeys.forEach(key => {
+              let column = document.createElement("td");
+              column.innerHTML = element[key];
+              newRow.appendChild(column);
+            })
+            totalPrice += parseFloat(element['price']) * element['quantity'];
           })
+          document.getElementById("checkout-button").innerHTML = `Checkout (${totalPrice.toFixed(2)})`;
         }
       })
     }

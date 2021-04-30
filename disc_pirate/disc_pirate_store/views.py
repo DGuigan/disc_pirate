@@ -171,14 +171,15 @@ def view_basket(request):
         basket_items = None
 
     flag = request.GET.get("format", "")
-    # if json request serialize basket info and send back, probably a better way to do this
+
     if flag == "json":
         if basket_items:
             basket_items_json = json.dumps([{"albumName": item.album.albumName,
                                              "artist": item.album.artist,
-                                             "quantity": item.quantity} for item in basket_items])
+                                             "quantity": item.quantity,
+                                             "price": str(item.album.price)} for item in basket_items])
         else:
-            basket_items_json = json.dumps([]);
+            basket_items_json = json.dumps([])
         return HttpResponse(basket_items_json, content_type="application/json")
     else:
         return render(request, 'view_basket.html', {'basket': shopping_basket, 'basket_items': basket_items})
