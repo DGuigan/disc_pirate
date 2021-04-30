@@ -41,12 +41,11 @@ function updateBasket() {
         if (data.length == 0) {
           emptyBasket.classList.remove("d-none");
           checkoutForm.classList.add("d-none");
+          table.classList.add("d-none");
         }
         else {
-          if (checkoutForm.classList.contains("d-none")) {
-            checkoutForm.classList.remove("d-none");
-          }
-
+          checkoutForm.classList.remove("d-none");
+          table.classList.remove("d-none");
           emptyBasket.classList.add("d-none");
 
           // create table headings

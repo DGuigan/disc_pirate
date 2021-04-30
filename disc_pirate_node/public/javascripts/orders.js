@@ -20,9 +20,11 @@ function updateOrders() {
             // checking for 1 because object always contains admin flag
             if (data.length == 1) {
                 noOrders.classList.remove("d-none");
+                table.classList.add("d-none");
             }
             else {  
                 noOrders.classList.add("d-none");
+                table.classList.remove("d-none");
     
                 // create table headings
                 let newRow = document.createElement("tr");
