@@ -263,14 +263,16 @@ def view_orders(request):
         user = Token.objects.get(key=token).user
 
     if user.is_admin:
-        orders = [{"order": order.id,
+        orders = [{"is_admin": user.is_admin}] +\
+                 [{"order": order.id,
                    "address": order.address,
                    "date": str(order.date),
                    "number": order.contactNumber,
                    "user": CaUser.objects.get(pk=order.user_id).username}
                   for order in Order.objects.all()]
     else:
-        orders = [{"order": order.id,
+        orders = [{"is_admin": user.is_admin}] +\
+                 [{"order": order.id,
                    "address": order.address,
                    "date": str(order.date),
                    "number": order.contactNumber}

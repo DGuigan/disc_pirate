@@ -15,11 +15,14 @@ loginform.addEventListener("submit", (event)=>{
   }).then(response => response.json()).then(data => {
     console.log(data);
     window.token = data['token'];
-    updateBasket();       
+    updateBasket();
+    updateOrders();    
   })
 
   let basket = document.getElementById("nav-basket-link");
+  let orders = document.getElementById("nav-orders-link");
   basket.classList.remove("d-none");
+  orders.classList.remove("d-none");
   loginform.classList.add("d-none");
 }, true);
 
@@ -42,6 +45,7 @@ checkoutButton.addEventListener("click", (event) => {
     }).then(response => response.json()).then(data => {
       console.log(data);
       updateBasket();
+      updateOrders();
 
       // form.reset() didn't work for me but this works
       document.getElementById("checkout-form-address").value = null;
