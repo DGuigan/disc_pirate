@@ -5,3 +5,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+nav {
+  border-radius: 0 0 30px 30px;
+}
+
+.btn {
+  border-radius: 0;
+}

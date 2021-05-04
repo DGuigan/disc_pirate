@@ -124,7 +124,7 @@ function getAlbums() {
 
         let card_button = document.createElement("button");
         card_button.type = "button";
-        card_button.classList.add("btn", "btn-primary", "mt-100");
+        card_button.classList.add("btn", "btn-info", "mt-100");
         card_button.innerHTML = "Add to basket";
 
         let card_footer = document.createElement("div");
