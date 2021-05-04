@@ -31,9 +31,12 @@ a {
 .card {
   background-color:  #e0c295;
   color: #905a2a;
+  border: 10px solid #967f5e;
+  border-radius: 110px;
 }
 
 .card-img-top {
   padding: 2px;
+  border-radius: 100px 100px 0 0;
 }
 

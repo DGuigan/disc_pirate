@@ -128,7 +128,7 @@ function getAlbums() {
         card_button.innerHTML = "Add to basket";
 
         let card_footer = document.createElement("div");
-        card_footer.classList.add("card-footer");
+        card_footer.classList.add("card-footer", "text-center");
         
         card_button.addEventListener("click", function() {
             addToBasket(element['id']);
