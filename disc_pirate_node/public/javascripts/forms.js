@@ -15,19 +15,24 @@ loginform.addEventListener("submit", (event)=>{
   }).then(response => response.json()).then(data => {
     console.log(data);
     // store user token in window
-    window.token = data['token'];
+    if (data.hasOwnProperty('token')) {
+      window.token = data['token'];
 
-    // update tables for first time
-    updateBasket();
-    updateOrders();    
+      // update tables for first time
+      updateBasket();
+      updateOrders();
+
+      // adjust layout of navbar for logged in user
+      let basket = document.getElementById("nav-basket-link");
+      let orders = document.getElementById("nav-orders-link");
+      basket.classList.remove("d-none");
+      orders.classList.remove("d-none");
+      loginform.classList.add("d-none");
+    }
+    else {
+      alert("Invalid login details");
+    }
   })
-
-  // adjust layout of navbar for logged in user
-  let basket = document.getElementById("nav-basket-link");
-  let orders = document.getElementById("nav-orders-link");
-  basket.classList.remove("d-none");
-  orders.classList.remove("d-none");
-  loginform.classList.add("d-none");
 }, true);
 
 // event listener for checkout form
