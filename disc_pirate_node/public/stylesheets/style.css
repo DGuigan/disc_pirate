@@ -1,7 +1,42 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+  /* 
+  nice colours with image: dark brown: #452612
+                           beige:  	   #e0c295
+                           orange:  	 #c27535
+                           brown:      #905a2a
+                           green:      #396550
+  */
+  background-image: url("/images/eran-menashri-Ae7pSsfzEHs-unsplash.jpg");
+
+
+  min-height: 500px;
+
+  background-attachment: fixed;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 a {
-  color: #00B7FF;
+  color: #f1dab8;
 }
+
+.btn {
+  background-color: #396550;
+  color: white;
+}
+
+.card {
+  background-color:  #e0c295;
+  color: #905a2a;
+  border: 10px solid #967f5e;
+  border-radius: 110px;
+}
+
+.card-img-top {
+  padding: 2px;
+  border-radius: 100px 100px 10px 10px;
+}
+
