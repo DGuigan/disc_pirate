@@ -3,7 +3,7 @@ let loginform = document.getElementById("login-form");
 
 loginform.addEventListener("submit", (event)=>{
   event.preventDefault();
-  let user = document.getElementById("form-username").value;
+  let user = document.getElementById("login-form-username").value;
   let pass = document.getElementById("form-password").value;
   fetch("http://localhost:8000/token/", {
     method: 'POST',
@@ -28,11 +28,57 @@ loginform.addEventListener("submit", (event)=>{
       basket.classList.remove("d-none");
       orders.classList.remove("d-none");
       loginform.classList.add("d-none");
+      signupform.classList.add("d-none");
     }
     else {
       alert("Invalid login details");
     }
   })
+}, true);
+
+// event listener for signup
+let signupform = document.getElementById("signup-form");
+
+signupform.addEventListener("submit", (event)=>{
+  event.preventDefault();
+  let user = document.getElementById("signup-form-username").value;
+  let pass1 = document.getElementById("form-password-1").value;
+  let pass2 = document.getElementById("form-password-2").value;
+
+  if (pass1.localeCompare(pass2) == 0) {
+    fetch("http://localhost:8000/node_signup/?format=json/", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( {username: user, password1: pass1, password2: pass2} )
+    }).then(response => response.json()).then(data => {
+      console.log(data);
+      // store user token in window
+      if (data.hasOwnProperty('token')) {
+        window.token = data['token'];
+
+        // update tables for first time
+        updateBasket();
+        updateOrders();
+
+        // adjust layout of navbar for logged in user
+        let basket = document.getElementById("nav-basket-link");
+        let orders = document.getElementById("nav-orders-link");
+        basket.classList.remove("d-none");
+        orders.classList.remove("d-none");
+        loginform.classList.add("d-none");
+        signupform.classList.add("d-none");
+      }
+      else {
+        alert("idk something bad probably");
+      }
+    })
+  }
+  else {
+    alert("Passwords do not match");
+  }
 }, true);
 
 // event listener for checkout form

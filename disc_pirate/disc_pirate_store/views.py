@@ -1,3 +1,5 @@
+from django.utils.decorators import method_decorator
+
 from .models import *
 from .forms import *
 from .decorators import admin_required
@@ -76,6 +78,22 @@ class CaUserSignupView(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('/')
+
+
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
+@csrf_exempt
+def node_signup(request):
+
+    if request.method == 'POST':
+        if not request.POST:
+            body_unicode = request.body.decode('utf-8')
+            body = json.loads(body_unicode)
+            form = CASignupForm(body)
+            if form.is_valid():
+                user = form.save()
+                return JsonResponse({"token": Token.objects.get(user_id=user.id).key})
+    return JsonResponse({"status": "signup failed"})
 
 
 class AdminSignupView(CreateView):
@@ -198,10 +216,6 @@ def order_form(request):
     shopping_basket = ShoppingBasket.objects.get(user=user)
 
     basket_items = ShoppingBasketItems.objects.filter(basket=shopping_basket)
-
-    # if basket is empty redirect to view_basket page
-    # if len(basket_items) == 0:
-    #     return redirect('/view_basket')
 
     if request.method == 'POST':
         if not request.POST:
