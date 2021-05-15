@@ -68,42 +68,56 @@
                     </div>
                 </div>
             </li>
-        </ul>
 
-        <!-- login form, disappears when completed, event listener in forms.js-->
-        <form id="login-form" class="form-inline">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <input id="login-form-username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username">
-                        </div>
-                        <div class="row">
-                            <input id="form-password" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password">
-                        </div>
+            <li id="nav-login-link" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="nav-login-link-text" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Login / Sign up
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <div id="login-container" class="container-fluid">
+                        <h3>Sign In:</h3>
+                        <!-- login form, event listener in forms.js-->
+                        <form id="login-form" class="form-inline">
+                            <div class="container-fluid">
+                                <div class="row justify-content-center">
+                                    <div class="col">
+                                        <div class="row">
+                                            <input id="login-form-username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username">
+                                        </div>
+                                        <div class="row">
+                                            <input id="form-password" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password">
+                                        </div>
+                                    </div>
+                                    <input class="form-control mr-sm-2 btn" type="submit" value="Login">
+                                </div>
+                            </div>
+                        </form>
+
+                        <h3>Create Account:</h3>
+                        <!-- signup form, event listener in forms.js-->
+                        <form id="signup-form" class="form-inline">
+                            <div class="container-fluid">
+                                <div class="row justify-content-center">
+                                    <div class="col">
+                                        <div class="row">
+                                            <input id="signup-form-username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username">
+                                        </div>
+                                        <div class="row">
+                                            <input id="form-password-1" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password">
+                                        </div>
+                                        <div class="row">
+                                            <input id="form-password-2" class="form-control mr-sm-2" type="password" placeholder="Confirm Password" aria-label="Confirm Password">
+                                        </div>
+                                    </div>
+                                    <input class="form-control mr-sm-2 btn" type="submit" value="Signup">
+                                </div>
+                            </div>
+                        </form>
+                        
                     </div>
-                    <input class="form-control mr-sm-2" type="submit" value="Login">
                 </div>
-            </div>
-        </form>
-        <form id="signup-form" class="form-inline">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <input id="signup-form-username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username">
-                        </div>
-                        <div class="row">
-                            <input id="form-password-1" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password">
-                        </div>
-                        <div class="row">
-                            <input id="form-password-2" class="form-control mr-sm-2" type="password" placeholder="Confirm Password" aria-label="Confirm Password">
-                        </div>
-                    </div>
-                    <input class="form-control mr-sm-2" type="submit" value="Signup">
-                </div>
-            </div>
-        </form>
+            </li>
+        </ul>
     </nav>
 
     <div class="container-fluid">

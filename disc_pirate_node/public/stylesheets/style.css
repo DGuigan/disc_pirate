@@ -23,9 +23,17 @@ a {
   color: #f1dab8;
 }
 
+a:hover {
+  color: white;
+}
+
 .btn {
   background-color: #396550;
   color: white;
+}
+
+input .btn {
+  padding: 3px;
 }
 
 .card {

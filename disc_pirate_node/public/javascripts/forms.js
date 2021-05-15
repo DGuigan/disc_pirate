@@ -1,3 +1,4 @@
+let login_dropdown = document.getElementById("nav-login-link");
 // event listener for login
 let loginform = document.getElementById("login-form");
 
@@ -27,8 +28,7 @@ loginform.addEventListener("submit", (event)=>{
       let orders = document.getElementById("nav-orders-link");
       basket.classList.remove("d-none");
       orders.classList.remove("d-none");
-      loginform.classList.add("d-none");
-      signupform.classList.add("d-none");
+      login_dropdown.classList.add("d-none");
     }
     else {
       alert("Invalid login details");
@@ -68,11 +68,10 @@ signupform.addEventListener("submit", (event)=>{
         let orders = document.getElementById("nav-orders-link");
         basket.classList.remove("d-none");
         orders.classList.remove("d-none");
-        loginform.classList.add("d-none");
-        signupform.classList.add("d-none");
+        login_dropdown.classList.add("d-none");
       }
       else {
-        alert("idk something bad probably");
+        alert("Invalid signup details");
       }
     })
   }
